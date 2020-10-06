@@ -66,6 +66,9 @@ export default {
           onAuthStateChangedAction: 'auth/onAuthStateChanged',
         },
       },
+      firestore: {
+        enablePersistence: true,
+      },
     },
   },
 
