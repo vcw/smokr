@@ -4,6 +4,10 @@
       fixed
       shadow
     >
+    <template #left>
+      <strong>smokr</strong>
+    </template>
+
     <template #right>
       <Auth />
     </template>
