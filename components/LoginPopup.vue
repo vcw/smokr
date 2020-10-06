@@ -1,7 +1,8 @@
 <template>
   <vs-dialog v-model="dialog">
     <template #header>
-      <strong>Войти</strong>
+      <strong v-if="!toggleSignUp">Вход</strong>
+      <strong v-if="toggleSignUp">Регистрация</strong>
     </template>
     <form class="form">
       <vs-input
@@ -26,16 +27,18 @@
       >
         Войти
       </vs-button>
+
+      <vs-button
+        v-if="toggleSignUp"
+        block
+        @click.prevent="onSignUpButtonClick"
+        :loading="loading"
+      >
+        Зарегистрироваться
+      </vs-button>
     </form>
 
-    <vs-button
-      v-if="toggleSignUp"
-      block
-      @click.prevent="onLoginButtonClick"
-      :loading="loading"
-    >
-      Зарегистрироваться {{user}}
-    </vs-button>
+
 
     <template #footer>
       <div class="footer-dialog">
