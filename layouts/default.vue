@@ -62,4 +62,11 @@ body {
 .layout-container {
   margin-top: 50px;
 }
+
+/* Component styling */
+
+.vs-input {
+  font-size: 16px;
+}
+
 </style>
