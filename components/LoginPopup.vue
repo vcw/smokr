@@ -6,6 +6,7 @@
     </template>
     <form class="form">
       <vs-input
+        class="form__input"
         label-placeholder="E-mail"
         v-model="email"
         type="email"
@@ -13,6 +14,7 @@
       />
 
       <vs-input
+        class="form__input"
         label-placeholder="Пароль"
         v-model="password"
         type="password"
@@ -20,6 +22,7 @@
       />
 
       <vs-button
+        class="form__submit"
         v-if="!toggleSignUp"
         block
         @click.prevent="onLoginButtonClick"
@@ -29,6 +32,7 @@
       </vs-button>
 
       <vs-button
+        class="form__submit"
         v-if="toggleSignUp"
         block
         @click.prevent="onSignUpButtonClick"
@@ -65,8 +69,8 @@
       value: Boolean,
     },
     data: () => ({
-      email: 'test@test.org',
-      password: 'testtest',
+      email: '',
+      password: '',
       toggleSignUp: false,
       loading: false,
     }),
@@ -131,8 +135,17 @@
 .form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 20vh;
+}
 
+.form__input {
+  margin-bottom: 1.5em;
+}
+
+.form__input:last-of-type {
+  margin-bottom: 2em;
+}
+
+.form__submit {
+  margin: 0;
 }
 </style>
