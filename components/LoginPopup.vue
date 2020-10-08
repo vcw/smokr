@@ -61,7 +61,6 @@
 
 <script>
   import sInput from '~/components/ui/sInput.vue';
-  import sButton from '~/components/ui/sButton.vue';
 
   import { mapState } from 'vuex';
 
