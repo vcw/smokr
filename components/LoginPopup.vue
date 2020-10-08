@@ -5,20 +5,18 @@
       <strong v-if="toggleSignUp">Регистрация</strong>
     </template>
     <form class="form">
-      <vs-input
+      <s-input
         class="form__input"
-        label-placeholder="E-mail"
-        v-model="email"
         type="email"
-        block
+        placeholder="E-mail"
+        v-model="email"
       />
 
-      <vs-input
+      <s-input
         class="form__input"
-        label-placeholder="Пароль"
-        v-model="password"
         type="password"
-        block
+        placeholder="Пароль"
+        v-model="password"
       />
 
       <vs-button
@@ -62,9 +60,16 @@
 </template>
 
 <script>
+  import sInput from '~/components/ui/sInput.vue';
+  import sButton from '~/components/ui/sButton.vue';
+
   import { mapState } from 'vuex';
 
   export default {
+    components: {
+      sInput,
+      sButton,
+    },
     props: {
       value: Boolean,
     },
