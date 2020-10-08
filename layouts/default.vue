@@ -25,6 +25,9 @@ export default {
   components: {
     Auth,
   },
+  middleware: [
+    'authRedirect'
+  ]
 }
 </script>
 

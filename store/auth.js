@@ -19,8 +19,10 @@ const actions = {
   async onAuthStateChanged({ commit }, { authUser }) {
     if (!!authUser) {
       await commit('SET_USER', authUser)
+      this.$router.push('/dashboard')
     } else {
       await commit('CLEAN_USER')
+      this.$router.push('/')
     }
   }
 }
