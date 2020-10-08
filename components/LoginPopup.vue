@@ -68,7 +68,6 @@
   export default {
     components: {
       sInput,
-      sButton,
     },
     props: {
       value: Boolean,
