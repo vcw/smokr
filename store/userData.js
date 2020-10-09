@@ -1,6 +1,7 @@
 const state = () => ({
   smokes: null,
   lastSmoke: null,
+  stats: null,
 })
 
 const mutations = {
@@ -11,6 +12,12 @@ const mutations = {
   CLEANUP_SMOKES(state) {
     state.smokes = null
   },
+  SET_STATS(state, stats) {
+    state.stats = stats
+  },
+  CLEAR_STATS(state) {
+    state.stats = null
+  }
 }
 
 const actions = {
@@ -25,7 +32,7 @@ const actions = {
         timestamp:  smoke.data().timestamp.toDate()
       }))
     }
-    
+
     commit('SET_SMOKES', processedSmokes)
   },
 
@@ -48,7 +55,31 @@ const actions = {
         text: 'Нам очень жаль' + error
       }, { root: true })
     }
-  }
+  },
+
+  getStats({ state, commit }) {
+    if (!!state.smokes) {
+      const smokes = state.smokes
+      const stats = smokes.reduce((accumulator, smoke) => {
+        smoke = new Date(smoke.timestamp)
+        smoke = smoke.toISOString().split('T')[0]
+        if (!!accumulator[smoke]) {
+          accumulator[smoke] += 1
+        } else {
+          accumulator[smoke] = 1
+        }
+        return accumulator
+      }, {})
+      const preparedStats = Object.keys(stats).map((date) => ({
+        x: date,
+        y: stats[date]
+      }))
+      console.log(preparedStats)
+      commit('SET_STATS', preparedStats)
+    } else {
+      commit('CLEAR_STATS')
+    }
+  },
 }
 
 export default {
