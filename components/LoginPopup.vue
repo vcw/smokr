@@ -89,16 +89,17 @@
     },
     methods: {
       async onLoginButtonClick() {
+        this.loading = true
         try {
-          this.loading = true
           await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
-          this.loading = false
           this.dialog = false
-          console.log(this.$store.state.auth.user)
-
         } catch (error) {
-          console.log(error)
+          this.$store.dispatch('notifications/showNotification', {
+            title: 'Неприятность...',
+            text: 'Произошла ошибка при входе :('
+          })
         }
+        this.loading = false
       },
 
       async onSignUpButtonClick() {
@@ -108,7 +109,10 @@
             this.password
           )
         } catch (error) {
-          console.log(error)
+          this.$store.dispatch('notifications/showNotification', {
+              title: 'Неприятность...',
+              text: 'Произошла ошибка при регистрации :('
+            })
         }
       }
     },
