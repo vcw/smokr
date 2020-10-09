@@ -20,7 +20,7 @@ export default {
   padding: 1rem;
 
   width: 100%;
-  min-height: 10rem;
+  min-height: 1rem;
 
   border-radius: .6rem;
 
