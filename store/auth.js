@@ -19,6 +19,7 @@ const actions = {
   async onAuthStateChanged({ commit, dispatch }, { authUser }) {
     if (!!authUser) {
       await commit('SET_USER', authUser)
+      await dispatch('userData/getSmokes', false, { root: true })
       this.$router.push('/dashboard')
       await dispatch('notifications/showNotification', {
         title: 'Успех!',
