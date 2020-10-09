@@ -1,20 +1,21 @@
 <template>
   <div class="dashboard">
-    <div class="dashboard__actions">
-      <s-card class="dashboard__card">
-        Последнее курение: {{ lastSmoke.getHours() }}:{{ lastSmoke.getMinutes() }}
+    <s-card class="dashboard__actions">
+      <div class="dashboard__last-smoke" v-if="lastSmoke">
+        <span class="dashboard__last-smoke-text">Последнее курение</span>
+        <strong class="dashboard__last-smoke-time">{{ lastSmokeTime }}</strong>
+        <span class="dashboard__last-smoke-date">{{ lastSmokeDate }}</span>
+      </div>
 
-        <vs-button
-        @click.prevent="smoke"
-        :loading="doSmokeLoading"
-        size="xl"
-        success
-        >
-          Совершить курение
-        </vs-button>
-      </s-card>
-      
-    </div>
+      <vs-button
+      @click.prevent="smoke"
+      :loading="doSmokeLoading"
+      size="xl"
+      success
+      >
+        Совершить курение
+      </vs-button>
+    </s-card>
   </div>
 </template>
 
@@ -34,7 +35,13 @@ export default {
   computed: {
     ...mapState({
       lastSmoke: (state) => state.userData.lastSmoke.timestamp
-    })
+    }),
+    lastSmokeTime() {
+      return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
+    },
+    lastSmokeDate() {
+      return this.lastSmoke.toLocaleDateString('ru-RU')
+    },
   },
   methods: {
     async smoke () {
@@ -54,9 +61,33 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin: .6rem;
 }
 
-.dashboard__card {
+.dashboard__last-smoke {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+.dashboard__last-smoke-text {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: normal;
+}
+
+.dashboard__last-smoke-time {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.dashboard__last-smoke-date {
+  display: block;
+  font-size: 1rem;
+  font-weight: normal;
+
+  color: #666;
 }
 </style>

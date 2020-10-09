@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  
+
 }
 </script>
 
@@ -20,8 +20,8 @@ export default {
   padding: 1rem;
 
   width: 100%;
-  height: 10rem;
-  
+  min-height: 10rem;
+
   border-radius: .6rem;
 
   background-color: #fff;
