@@ -24,23 +24,10 @@ export default {
     async smoke () {
       const timestamp = new Date();
       this.doSmokeLoading = true;
-      try {
-        const doc = await this.$fireStore.collection('users').doc(this.$store.state.auth.user.uid).collection('smokes');
-        await doc.add({
-          timestamp
-        })
-        this.$vs.notification({
-          title: 'Свершилось курение!',
-          text: 'Здоровью нанесён непоправимый урон :('
-        })
-      } catch (error) {
-        this.$vs.notification({
-          title: 'Произошла ошибка!',
-          text: 'Нам очень жаль'
-        })
-      }
+      await this.$store.dispatch('userData/doSmoke', {
+        timestamp
+      })
       this.doSmokeLoading = false;
-
     }
   }
 }
