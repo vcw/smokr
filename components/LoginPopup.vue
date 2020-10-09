@@ -128,7 +128,13 @@
             text: 'Вы вышли из аккаунта'
           })
         }
-
+      },
+      dialog(isOpen) {
+        if (!isOpen) {
+          this.email = ''
+          this.password = ''
+          this.toggleSignUp = false
+        }
       }
     }
   }
