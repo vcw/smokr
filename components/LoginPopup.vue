@@ -78,9 +78,6 @@
       loading: false,
     }),
     computed: {
-      ...mapState({
-        user: state => state.auth.user
-      }),
       dialog: {
         get () {
           return this.value;
@@ -116,19 +113,6 @@
       }
     },
     watch: {
-      user(authUserObj) {
-        if (authUserObj) {
-          this.$vs.notification({
-            title: 'Успех!',
-            text: `Вы вошли как ${authUserObj.email}`
-          })
-        } else if (authUserObj === null) {
-          this.$vs.notification({
-            title: 'До встречи!',
-            text: 'Вы вышли из аккаунта'
-          })
-        }
-      },
       dialog(isOpen) {
         if (!isOpen) {
           this.email = ''

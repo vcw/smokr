@@ -16,13 +16,22 @@ const mutations = {
 }
 
 const actions = {
-  async onAuthStateChanged({ commit }, { authUser }) {
+  async onAuthStateChanged({ commit, dispatch }, { authUser }) {
     if (!!authUser) {
       await commit('SET_USER', authUser)
       this.$router.push('/dashboard')
+      await dispatch('notifications/showNotification', {
+        title: 'Успех!',
+        text: `Вы вошли как ${authUser.email}`
+      }, { root: true })
+
     } else {
       await commit('CLEAN_USER')
       this.$router.push('/')
+      await dispatch('notifications/showNotification', {
+        title: 'До встречи!',
+        text: 'Вы вышли из аккаунта'
+      }, { root: true })
     }
   }
 }
