@@ -20,6 +20,7 @@
 
 <script>
 import Auth from '~/components/Auth.vue'
+import { mapState } from 'vuex'
 
 export default {
   components: {
@@ -27,7 +28,22 @@ export default {
   },
   middleware: [
     'authRedirect'
-  ]
+  ],
+  computed: {
+    ...mapState({
+      notification: state => state.notifications.notification
+    })
+  },
+  watch: {
+    notification(message) {
+      if (!!message) {
+        this.$vs.notification({
+          title: message.title,
+          text: message.text
+        })
+      }
+    }
+  }
 }
 </script>
 
