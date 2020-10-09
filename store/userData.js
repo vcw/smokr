@@ -6,7 +6,7 @@ const state = () => ({
 const mutations = {
   SET_SMOKES(state, smokes) {
     state.smokes = smokes
-    state.lastSmoke = smokes[0]
+    state.lastSmoke = (!!smokes) ? smokes[0] : null
   },
   CLEANUP_SMOKES(state) {
     state.smokes = null
@@ -19,10 +19,12 @@ const actions = {
     const smokes = await collection.orderBy("timestamp", "desc").get()
 
     const processedSmokes = []
-    smokes.forEach( (smoke) => processedSmokes.push({
-      id: smoke.id,
-      timestamp:  smoke.data().timestamp.toDate()
-    }))
+    if (!!smokes) {
+      smokes.forEach( (smoke) => processedSmokes.push({
+        id: smoke.id,
+        timestamp:  smoke.data().timestamp.toDate()
+      }))
+    }
     
     commit('SET_SMOKES', processedSmokes)
   },

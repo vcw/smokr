@@ -34,7 +34,7 @@ export default {
   },
   computed: {
     ...mapState({
-      lastSmoke: (state) => state.userData.lastSmoke.timestamp
+      lastSmoke: (state) => (!!state.userData.lastSmoke) ? state.userData.lastSmoke.timestamp : null
     }),
     lastSmokeTime() {
       return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
