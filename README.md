@@ -1,20 +1,26 @@
-# smokr
+# Smokr — мобильное веб-приложение для учёта курений
 
-## Build Setup
+На данный момент реализована функция просмотра времени и даты последнего курения и регистрации/авторизации. В планах добавление тегов к курению и стратистика по дням.
 
-```bash
-# install dependencies
-$ yarn install
+На проект в работе можно посмотреть [здесь](https://smokr.cloud)
 
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+E-mail и пароль для теста:
+```
+Email: test@test.org
+Пароль: testtest
 ```
 
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Использованные технологии: Nuxt.js, Firebase, Vuesax
+
+## Настройка проекта
+
+```bash
+# Установите зависимости
+$ yarn install
+
+# Запустите проект на localhost:3000
+$ yarn dev
+
+# Соберите проект для деплоя
+$ yarn generate
+```
