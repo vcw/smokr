@@ -62,7 +62,7 @@ const actions = {
       const smokes = state.smokes
       const stats = smokes.reduce((accumulator, smoke) => {
         smoke = new Date(smoke.timestamp)
-        const date = smoke.toISOString().split('T')[0]
+        const date = smoke.toLocaleDateString('ru-RU')
         if (!!accumulator[date]) {
           accumulator[date].push(smoke)
           accumulator[date].sort()
