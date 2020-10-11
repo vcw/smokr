@@ -27,7 +27,10 @@ const actions = {
       }, { root: true })
 
     } else {
-      await commit('CLEAN_USER')
+      await commit('CLEAN_USER'),
+      await commit('userData/CLEAR_USER_DATA', false, {
+        root: true
+      })
       this.$router.push('/')
       await dispatch('notifications/showNotification', {
         title: 'До встречи!',

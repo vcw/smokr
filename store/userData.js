@@ -17,7 +17,12 @@ const mutations = {
   },
   CLEAR_STATS(state) {
     state.stats = null
-  }
+  },
+  CLEAR_USER_DATA(state) {
+    state.smokes = null
+    state.lastSmoke = null
+    state.stats = null
+  },
 }
 
 const actions = {
@@ -44,7 +49,8 @@ const actions = {
       await collection.add({
         timestamp
       })
-      dispatch('getSmokes')
+      dispatch('getSmokes'),
+      dispatch('getStats')
       dispatch('notifications/showNotification', {
         title: 'Свершилось курение!',
         text: 'Здоровью нанесён непоправимый урон :('
