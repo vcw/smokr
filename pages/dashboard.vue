@@ -16,28 +16,52 @@
         Совершить курение
       </vs-button>
     </s-card>
+
+    <vs-button
+      v-if="!stats && lastSmoke"
+      @click.prevent="getstats"
+      :loading="doSmokeLoading"
+      size="xl"
+      success
+    >
+      Показать статистику
+    </vs-button>
+
+    <s-card v-if="stats">
+      <day-stats
+        class="dashboard__day-stats"
+        v-for="day in stats.data"
+        :key="day.date"
+        :day="day"
+        :max="stats.max"
+      />
+    </s-card>
   </div>
 </template>
 
 <script>
 import sCard from '~/components/ui/sCard.vue'
+import dayStats from '~/components/dayStats.vue'
 import { mapState } from 'vuex'
 
 export default {
   components: {
-    sCard
+    sCard,
+    dayStats
   },
   data () {
     return {
-      doSmokeLoading: false
+      doSmokeLoading: false,
     }
   },
   computed: {
     ...mapState({
-      lastSmoke: (state) => (!!state.userData.lastSmoke) ? state.userData.lastSmoke.timestamp : null
+      lastSmoke: (state) => (!!state.userData.lastSmoke) ? state.userData.lastSmoke.timestamp : null,
+      stats: (state) => state.userData.stats
     }),
     lastSmokeTime() {
-      return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
+      // return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
+      return this.lastSmoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
     },
     lastSmokeDate() {
       return this.lastSmoke.toLocaleDateString('ru-RU')
@@ -51,6 +75,9 @@ export default {
         timestamp
       })
       this.doSmokeLoading = false;
+    },
+    getstats() {
+      this.$store.dispatch('userData/getStats')
     }
   }
 }
@@ -63,6 +90,10 @@ export default {
   align-items: center;
 
   margin: .6rem;
+}
+
+.dashboard__actions {
+  margin-bottom: 1rem;
 }
 
 .dashboard__last-smoke {
@@ -89,5 +120,9 @@ export default {
   font-weight: normal;
 
   color: #666;
+}
+
+.dashboard__day-stats:not(:last-of-type) {
+  margin-bottom: .7rem;
 }
 </style>

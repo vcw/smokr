@@ -17,7 +17,12 @@ const mutations = {
   },
   CLEAR_STATS(state) {
     state.stats = null
-  }
+  },
+  CLEAR_USER_DATA(state) {
+    state.smokes = null
+    state.lastSmoke = null
+    state.stats = null
+  },
 }
 
 const actions = {
@@ -44,7 +49,8 @@ const actions = {
       await collection.add({
         timestamp
       })
-      dispatch('getSmokes')
+      dispatch('getSmokes'),
+      dispatch('getStats')
       dispatch('notifications/showNotification', {
         title: 'Свершилось курение!',
         text: 'Здоровью нанесён непоправимый урон :('
@@ -62,20 +68,25 @@ const actions = {
       const smokes = state.smokes
       const stats = smokes.reduce((accumulator, smoke) => {
         smoke = new Date(smoke.timestamp)
-        smoke = smoke.toISOString().split('T')[0]
-        if (!!accumulator[smoke]) {
-          accumulator[smoke] += 1
+        const date = smoke.toLocaleDateString('ru-RU')
+        if (!!accumulator[date]) {
+          accumulator[date].push(smoke)
+          accumulator[date].sort()
         } else {
-          accumulator[smoke] = 1
+          accumulator[date] = [smoke]
         }
         return accumulator
       }, {})
-      const preparedStats = Object.keys(stats).map((date) => ({
-        x: date,
-        y: stats[date]
-      }))
-      console.log(preparedStats)
-      commit('SET_STATS', preparedStats)
+      const sortedStats = Object.keys(stats).map(date => ({
+        date,
+        total: stats[date].length,
+        data: stats[date]
+      })).sort((a, b) => (a.date < b.date) ? 1 : -1)
+      const max = Math.max(...sortedStats.map(day => day.total))
+      commit('SET_STATS', {
+        data: sortedStats,
+        max,
+      })
     } else {
       commit('CLEAR_STATS')
     }
