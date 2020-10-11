@@ -6,45 +6,42 @@
     </template>
     <form class="form">
       <s-input
+        v-model="email"
         class="form__input"
         type="email"
         placeholder="E-mail"
-        v-model="email"
       />
 
       <s-input
+        v-model="password"
         class="form__input"
         type="password"
         placeholder="Пароль"
-        v-model="password"
       />
 
       <vs-button
-        class="form__submit"
         v-if="!toggleSignUp"
+        class="form__submit"
         block
-        @click.prevent="onLoginButtonClick"
         :loading="loading"
+        @click.prevent="onLoginButtonClick"
       >
         Войти
       </vs-button>
 
       <vs-button
-        class="form__submit"
         v-if="toggleSignUp"
+        class="form__submit"
         block
-        @click.prevent="onSignUpButtonClick"
         :loading="loading"
+        @click.prevent="onSignUpButtonClick"
       >
         Зарегистрироваться
       </vs-button>
     </form>
 
-
-
     <template #footer>
       <div class="footer-dialog">
-
         <div v-if="!toggleSignUp" class="new">
           Впервые здесь?
           <a href="#" @click.prevent="toggleSignUp = true">Регистрация</a>
@@ -60,72 +57,70 @@
 </template>
 
 <script>
-  import sInput from '~/components/ui/sInput.vue';
+import sInput from '~/components/ui/sInput.vue';
 
-  import { mapState } from 'vuex';
-
-  export default {
-    components: {
-      sInput,
-    },
-    props: {
-      value: Boolean,
-    },
-    data: () => ({
-      email: '',
-      password: '',
-      toggleSignUp: false,
-      loading: false,
-    }),
-    computed: {
-      dialog: {
-        get () {
-          return this.value;
-        },
-        set (val) {
-          this.$emit('input', val)
-        }
-      }
-    },
-    methods: {
-      async onLoginButtonClick() {
-        this.loading = true
-        try {
-          await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password)
-          this.dialog = false
-        } catch (error) {
-          this.$store.dispatch('notifications/showNotification', {
-            title: 'Неприятность...',
-            text: 'Произошла ошибка при входе :('
-          })
-        }
-        this.loading = false
+export default {
+  components: {
+    sInput,
+  },
+  props: {
+    value: Boolean,
+  },
+  data: () => ({
+    email: '',
+    password: '',
+    toggleSignUp: false,
+    loading: false,
+  }),
+  computed: {
+    dialog: {
+      get() {
+        return this.value;
       },
-
-      async onSignUpButtonClick() {
-        try {
-          await this.$fireAuth.createUserWithEmailAndPassword(
-            this.email,
-            this.password
-          )
-        } catch (error) {
-          this.$store.dispatch('notifications/showNotification', {
-              title: 'Неприятность...',
-              text: 'Произошла ошибка при регистрации :('
-            })
-        }
+      set(val) {
+        this.$emit('input', val);
+      },
+    },
+  },
+  watch: {
+    dialog(isOpen) {
+      if (!isOpen) {
+        this.email = '';
+        this.password = '';
+        this.toggleSignUp = false;
       }
     },
-    watch: {
-      dialog(isOpen) {
-        if (!isOpen) {
-          this.email = ''
-          this.password = ''
-          this.toggleSignUp = false
-        }
+  },
+  methods: {
+    async onLoginButtonClick() {
+      this.loading = true;
+      try {
+        await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password);
+        this.dialog = false;
+      } catch (error) {
+        this.$store.dispatch('notifications/showNotification', {
+          title: 'Неприятность...',
+          text: 'Произошла ошибка при входе :(',
+        });
       }
-    }
-  }
+      this.loading = false;
+    },
+
+    async onSignUpButtonClick() {
+      try {
+        await this.$fireAuth.createUserWithEmailAndPassword(
+          this.email,
+          this.password,
+        );
+      } catch (error) {
+        this.$store.dispatch('notifications/showNotification', {
+          title: 'Неприятность...',
+          text: 'Произошла ошибка при регистрации :(',
+        });
+      }
+    },
+  },
+};
 </script>
 
 <style>

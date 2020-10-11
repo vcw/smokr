@@ -1,6 +1,11 @@
 <template>
   <label class="input">
-    <input class="input__field" :type="type" :placeholder="placeholder" v-model="inputValue"/>
+    <input
+      v-model="inputValue"
+      class="input__field"
+      :type="type"
+      :placeholder="placeholder"
+    >
     <span class="input__label">{{ placeholder }}</span>
   </label>
 </template>
@@ -8,9 +13,18 @@
 <script>
 export default {
   props: {
-    placeholder: String,
-    type: String,
-    value: String,
+    placeholder: {
+      required: true,
+      type: String,
+    },
+    type: {
+      required: true,
+      type: String,
+    },
+    value: {
+      required: true,
+      type: String,
+    },
   },
   computed: {
     inputValue: {
@@ -22,7 +36,7 @@ export default {
       },
     },
   },
-}
+};
 </script>
 
 <style>
@@ -73,14 +87,14 @@ export default {
   position: absolute;
   top: var(--s-input-padding-vertical);
   left: var(--s-input-padding-horizontal);
-  
+
   cursor: text;
   user-select: none;
-  
+
   font-family: var(--s-input-font-family);
   font-size: var(--s-input-font-size);
   opacity: .4;
-  
+
   transition: all 0.25s ease-in-out;
 }
 

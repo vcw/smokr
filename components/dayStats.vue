@@ -1,12 +1,11 @@
 <template>
-<div class="day-stats">
-  <span class="day-stats__date">{{day.date}}</span>
-  <i
-    class="day-stats__bar"
-    :style="barStyle"
-  >
-  </i>
-</div>
+  <div class="day-stats">
+    <span class="day-stats__date">{{ day.date }}</span>
+    <i
+      class="day-stats__bar"
+      :style="barStyle"
+    />
+  </div>
 </template>
 
 <script>
@@ -14,22 +13,23 @@
 export default {
   props: {
     day: {
-      type: Object
+      required: true,
+      type: Object,
     },
     max: {
-      type: Number
-    }
+      required: true,
+      type: Number,
+    },
   },
   computed: {
     date() {
-      return new Date(this.day.date)
+      return new Date(this.day.date);
     },
     barStyle() {
-      return `width: ${100 * this.day.data.length / this.max}%`;
+      return `width: ${(100 * this.day.data.length) / this.max}%`;
     },
   },
-}
-
+};
 
 </script>
 

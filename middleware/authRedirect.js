@@ -1,9 +1,11 @@
-export default function ({ store, route, redirect }) {
+/* eslint-disable consistent-return */
+export default function authRedirect({ store, route, redirect }) {
   const path = route.fullPath;
 
   if (path !== '/' && !store.state.auth.user) {
     return redirect('/');
-  } else if (path === '/' && store.state.auth.user) {
+  }
+  if (path === '/' && store.state.auth.user) {
     return redirect('/dashboard');
   }
 }

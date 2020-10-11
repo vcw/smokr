@@ -18,26 +18,26 @@
 </template>
 
 <script>
-import LoginPopup from '~/components/LoginPopup.vue'
+import LoginPopup from '~/components/LoginPopup.vue';
 
 export default {
   components: {
     LoginPopup,
   },
-  data: function () {
+  data() {
     return {
       isLoginPopupActive: false,
       loggingOut: false,
-    }
+    };
   },
   methods: {
-    async logout () {
-      this.loggingOut = true
-      await this.$fireAuth.signOut()
-      this.loggingOut = false
-    }
-  }
-}
+    async logout() {
+      this.loggingOut = true;
+      await this.$fireAuth.signOut();
+      this.loggingOut = false;
+    },
+  },
+};
 </script>
 
 <style>

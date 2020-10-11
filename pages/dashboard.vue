@@ -1,17 +1,17 @@
 <template>
   <div class="dashboard">
     <s-card class="dashboard__actions">
-      <div class="dashboard__last-smoke" v-if="lastSmoke">
+      <div v-if="lastSmoke" class="dashboard__last-smoke">
         <span class="dashboard__last-smoke-text">Последнее курение</span>
         <strong class="dashboard__last-smoke-time">{{ lastSmokeTime }}</strong>
         <span class="dashboard__last-smoke-date">{{ lastSmokeDate }}</span>
       </div>
 
       <vs-button
-      @click.prevent="smoke"
-      :loading="doSmokeLoading"
-      size="xl"
-      success
+        :loading="doSmokeLoading"
+        size="xl"
+        success
+        @click.prevent="smoke"
       >
         Совершить курение
       </vs-button>
@@ -19,19 +19,19 @@
 
     <vs-button
       v-if="!stats && lastSmoke"
-      @click.prevent="getstats"
       :loading="doSmokeLoading"
       size="xl"
       success
+      @click.prevent="getstats"
     >
       Показать статистику
     </vs-button>
 
     <s-card v-if="stats">
       <day-stats
-        class="dashboard__day-stats"
         v-for="day in stats.data"
         :key="day.date"
+        class="dashboard__day-stats"
         :day="day"
         :max="stats.max"
       />
@@ -40,47 +40,49 @@
 </template>
 
 <script>
-import sCard from '~/components/ui/sCard.vue'
-import dayStats from '~/components/dayStats.vue'
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import sCard from '~/components/ui/sCard.vue';
+import dayStats from '~/components/dayStats.vue';
 
 export default {
   components: {
     sCard,
-    dayStats
+    dayStats,
   },
-  data () {
+  data() {
     return {
       doSmokeLoading: false,
-    }
+    };
   },
   computed: {
     ...mapState({
-      lastSmoke: (state) => (!!state.userData.lastSmoke) ? state.userData.lastSmoke.timestamp : null,
-      stats: (state) => state.userData.stats
+      lastSmoke: (state) => ((state.userData.lastSmoke)
+        ? state.userData.lastSmoke.timestamp
+        : null),
+      stats: (state) => state.userData.stats,
     }),
     lastSmokeTime() {
       // return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
-      return this.lastSmoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })
+      return this.lastSmoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     },
     lastSmokeDate() {
-      return this.lastSmoke.toLocaleDateString('ru-RU')
+      return this.lastSmoke.toLocaleDateString('ru-RU');
     },
   },
   methods: {
-    async smoke () {
+    async smoke() {
       const timestamp = new Date();
       this.doSmokeLoading = true;
       await this.$store.dispatch('userData/doSmoke', {
-        timestamp
-      })
+        timestamp,
+      });
       this.doSmokeLoading = false;
     },
     getstats() {
-      this.$store.dispatch('userData/getStats')
-    }
-  }
-}
+      this.$store.dispatch('userData/getStats');
+    },
+  },
+};
 </script>
 
 <style>

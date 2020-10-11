@@ -4,13 +4,13 @@
       fixed
       shadow
     >
-    <template #left>
-      <strong>smokr</strong>
-    </template>
+      <template #left>
+        <strong>smokr</strong>
+      </template>
 
-    <template #right>
-      <Auth />
-    </template>
+      <template #right>
+        <Auth />
+      </template>
     </vs-navbar>
     <div class="layout-container">
       <Nuxt />
@@ -19,32 +19,32 @@
 </template>
 
 <script>
-import Auth from '~/components/Auth.vue'
-import { mapState } from 'vuex'
+import { mapState } from 'vuex';
+import Auth from '~/components/Auth.vue';
 
 export default {
   components: {
     Auth,
   },
   middleware: [
-    'authRedirect'
+    'authRedirect',
   ],
   computed: {
     ...mapState({
-      notification: state => state.notifications.notification
-    })
+      notification: (state) => state.notifications.notification,
+    }),
   },
   watch: {
     notification(message) {
-      if (!!message) {
+      if (message) {
         this.$vs.notification({
           title: message.title,
-          text: message.text
-        })
+          text: message.text,
+        });
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style>
