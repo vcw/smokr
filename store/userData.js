@@ -64,6 +64,18 @@ const actions = {
       console.log(error);
     }
   },
+
+  async removeSmoke({ dispatch, rootState }, timestamp) {
+    try {
+      const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
+      await userDoc.update({
+        smokes: firebase.firestore.FieldValue.arrayRemove(timestamp),
+      });
+      dispatch('getSmokesV2');
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 const state = () => ({

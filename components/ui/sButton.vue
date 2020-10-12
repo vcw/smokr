@@ -12,9 +12,8 @@ export default {
   components: {
   },
   props: {
-    expanded: Boolean,
     badge: {
-      required: true,
+      default: null,
       type: Number,
     },
   },
@@ -33,6 +32,15 @@ export default {
   border-radius: .6rem;
 
   background: #eee;
+}
+
+.button_alert {
+  background: #BA1F33;
+  color: #fff;
+}
+
+.button_type_default {
+  padding: .3rem;
 }
 
 .button__content {

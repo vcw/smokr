@@ -8,7 +8,7 @@
       />
       <s-button
         class="day-stats__expand"
-        :badge="(!statsExpanded) ? day.data.length : none"
+        :badge="(!statsExpanded) ? day.data.length : null"
         @click="toggleExpandedStats"
       >
         <expand :expanded="statsExpanded" />
