@@ -5,3 +5,4 @@ tasks:
 vscode:
   extensions:
     - octref.vetur@0.28.0:bW1RGNnmWYQO43JdJgK34w==
+    - dbaeumer.vscode-eslint@2.1.8:02aHhbJ0Q4aGdjHXlTdVKg==
