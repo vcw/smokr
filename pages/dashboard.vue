@@ -51,7 +51,6 @@ export default {
       dailyMax: (state) => state.userData.dailyMax,
     }),
     lastSmokeTime() {
-      // return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
       return this.lastSmoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     },
     lastSmokeDate() {
