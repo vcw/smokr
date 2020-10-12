@@ -1,18 +1,15 @@
 <template>
   <button class="button" @click.prevent="$emit('click')">
     <div class="button__content">
-      <expand :expanded="expanded" />
+      <slot />
     </div>
     <span v-if="badge" class="button__badge">{{ badge }}</span>
   </button>
 </template>
 
 <script>
-import expand from '~/components/icons/expand.vue';
-
 export default {
   components: {
-    expand,
   },
   props: {
     expanded: Boolean,

@@ -8,10 +8,11 @@
       />
       <s-button
         class="day-stats__expand"
-        :expanded="statsExpanded"
         :badge="(!statsExpanded) ? day.data.length : none"
         @click="toggleExpandedStats"
-      />
+      >
+        <expand :expanded="statsExpanded" />
+      </s-button>
     </div>
     <extended-day-stats v-if="statsExpanded" :smokes="day.data" />
   </div>
@@ -20,11 +21,13 @@
 <script>
 import sButton from '~/components/ui/sButton.vue';
 import ExtendedDayStats from '~/components/ExtendedDayStats.vue';
+import expand from '~/components/icons/expand.vue';
 
 export default {
   components: {
     sButton,
     ExtendedDayStats,
+    expand,
   },
   props: {
     day: {
