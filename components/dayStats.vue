@@ -1,16 +1,30 @@
 <template>
   <div class="day-stats">
-    <span class="day-stats__date">{{ day.date }}</span>
-    <i
-      class="day-stats__bar"
-      :style="barStyle"
-    />
+    <div class="day-stats__main">
+      <span class="day-stats__date">{{ day.date }}</span>
+      <i
+        class="day-stats__bar"
+        :style="barStyle"
+      />
+      <s-button
+        class="day-stats__expand"
+        :expanded="statsExpanded"
+        @click="toggleExpandedStats"
+      />
+    </div>
+    <extended-day-stats v-if="statsExpanded" :smokes="day.data" />
   </div>
 </template>
 
 <script>
+import sButton from '~/components/ui/sButton.vue';
+import ExtendedDayStats from '~/components/ExtendedDayStats.vue';
 
 export default {
+  components: {
+    sButton,
+    ExtendedDayStats,
+  },
   props: {
     day: {
       required: true,
@@ -21,6 +35,11 @@ export default {
       type: Number,
     },
   },
+  data() {
+    return {
+      statsExpanded: false,
+    };
+  },
   computed: {
     date() {
       return new Date(this.day.date);
@@ -29,12 +48,21 @@ export default {
       return `width: ${(100 * this.day.data.length) / this.max}%`;
     },
   },
+  methods: {
+    toggleExpandedStats() {
+      this.statsExpanded = !this.statsExpanded;
+    },
+  },
 };
 
 </script>
 
 <style>
 .day-stats {
+  width: 100%;
+}
+
+.day-stats__main {
   display: grid;
   grid-template-columns: 1fr 2.3rem;
   grid-template-rows: 1rem 1rem;
