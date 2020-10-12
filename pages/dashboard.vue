@@ -18,22 +18,22 @@
     </s-card>
 
     <vs-button
-      v-if="!stats && lastSmoke"
+      v-if="!smokes"
       :loading="doSmokeLoading"
       size="xl"
       success
-      @click.prevent="getstats"
+      @click.prevent="migrate"
     >
-      Показать статистику
+      Выгрузить курения
     </vs-button>
 
-    <s-card v-if="stats">
+    <s-card v-if="smokes">
       <day-stats
-        v-for="day in stats.data"
+        v-for="day in smokes"
         :key="day.date"
         class="dashboard__day-stats"
         :day="day"
-        :max="stats.max"
+        :max="dailyMax"
       />
     </s-card>
   </div>
@@ -56,10 +56,9 @@ export default {
   },
   computed: {
     ...mapState({
-      lastSmoke: (state) => ((state.userData.lastSmoke)
-        ? state.userData.lastSmoke.timestamp
-        : null),
-      stats: (state) => state.userData.stats,
+      lastSmoke: (state) => state.userData.lastSmoke,
+      smokes: (state) => state.userData.smokesV2,
+      dailyMax: (state) => state.userData.dailyMax,
     }),
     lastSmokeTime() {
       // return `${this.lastSmoke.getHours()}:${this.lastSmoke.getMinutes()}`
@@ -73,13 +72,17 @@ export default {
     async smoke() {
       const timestamp = new Date();
       this.doSmokeLoading = true;
-      await this.$store.dispatch('userData/doSmoke', {
-        timestamp,
-      });
+      await this.$store.dispatch('userData/doSmokeV2', timestamp);
       this.doSmokeLoading = false;
     },
-    getstats() {
-      this.$store.dispatch('userData/getStats');
+    async migrate() {
+      await this.$store.dispatch('userData/getSmokes');
+      const oldSmokes = [...this.$store.state.userData.smokes];
+      const sortedOldSmokes = oldSmokes.sort((a, b) => ((a > b) ? 1 : -1));
+      await Promise.all(sortedOldSmokes.map(async (smoke) => {
+        await this.$store.dispatch('userData/doSmokeV2', smoke);
+      }));
+      await this.$store.dispatch('userData/getSmokesV2');
     },
   },
 };
