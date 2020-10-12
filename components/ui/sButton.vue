@@ -3,7 +3,7 @@
     <div class="button__content">
       <expand :expanded="expanded" />
     </div>
-    <span v-if="!expanded" class="button__badge">{{ badge }}</span>
+    <span v-if="badge" class="button__badge">{{ badge }}</span>
   </button>
 </template>
 
