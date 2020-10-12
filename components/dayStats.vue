@@ -9,6 +9,7 @@
       <s-button
         class="day-stats__expand"
         :expanded="statsExpanded"
+        :badge="day.data.length"
         @click="toggleExpandedStats"
       />
     </div>
@@ -85,7 +86,7 @@ export default {
 
   height: 100%;
 
-  background-color: blue;
+  background-color: #2D2E2E;
 
   border-radius: .6em;
 }
