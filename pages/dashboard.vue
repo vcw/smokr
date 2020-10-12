@@ -17,16 +17,6 @@
       </vs-button>
     </s-card>
 
-    <vs-button
-      v-if="!smokes"
-      :loading="doSmokeLoading"
-      size="xl"
-      success
-      @click.prevent="migrate"
-    >
-      Выгрузить курения
-    </vs-button>
-
     <s-card v-if="smokes">
       <day-stats
         v-for="day in smokes"
@@ -74,15 +64,6 @@ export default {
       this.doSmokeLoading = true;
       await this.$store.dispatch('userData/doSmokeV2', timestamp);
       this.doSmokeLoading = false;
-    },
-    async migrate() {
-      await this.$store.dispatch('userData/getSmokes');
-      const oldSmokes = [...this.$store.state.userData.smokes];
-      const sortedOldSmokes = oldSmokes.sort((a, b) => ((a > b) ? 1 : -1));
-      await Promise.all(sortedOldSmokes.map(async (smoke) => {
-        await this.$store.dispatch('userData/doSmokeV2', smoke);
-      }));
-      await this.$store.dispatch('userData/getSmokesV2');
     },
   },
 };
