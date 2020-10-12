@@ -98,7 +98,7 @@ export default {
 }
 
 .dashboard__actions {
-  margin-bottom: 1rem;
+  margin-bottom: .6rem;
 }
 
 .dashboard__last-smoke {

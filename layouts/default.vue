@@ -79,7 +79,7 @@ body {
 }
 
 .layout-container {
-  margin-top: 50px;
+  margin-top: calc(44px + .6rem);
 }
 
 /* Component styling */
