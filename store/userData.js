@@ -18,10 +18,6 @@ function groupSmokes(smokes) {
 }
 
 const mutations = {
-  SET_SMOKES(state, smokes) {
-    state.smokes = smokes;
-    state.lastSmoke = (smokes) ? smokes[0] : null;
-  },
   SET_SMOKES_V2(state, smokes) {
     state.smokesV2 = smokes;
     state.lastSmoke = (smokes) ? smokes[0].data[0] : null;
@@ -32,35 +28,9 @@ const mutations = {
     state.lastSmoke = null;
     state.dailyMax = null;
   },
-  CLEANUP_SMOKES(state) {
-    state.smokes = null;
-  },
-  SET_STATS(state, stats) {
-    state.stats = stats;
-  },
-  CLEAR_STATS(state) {
-    state.stats = null;
-  },
-  CLEAR_USER_DATA(state) {
-    state.smokes = null;
-    state.lastSmoke = null;
-    state.stats = null;
-  },
 };
 
 const actions = {
-  async getSmokes({ commit, rootState }) {
-    const collection = await this.$fireStore.collection('users').doc(rootState.auth.user.uid).collection('smokes');
-    const smokes = await collection.orderBy('timestamp', 'desc').get();
-
-    const processedSmokes = [];
-    if (smokes) {
-      smokes.forEach((smoke) => processedSmokes.push(smoke.data().timestamp.toDate()));
-    }
-
-    commit('SET_SMOKES', processedSmokes);
-  },
-
   async getSmokesV2({ commit, rootState }) {
     try {
       const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid).get();
@@ -97,7 +67,6 @@ const actions = {
 };
 
 const state = () => ({
-  smokes: null,
   smokesV2: null,
   lastSmoke: null,
   dailyMax: null,
