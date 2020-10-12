@@ -1,7 +1,36 @@
+import firebase from 'firebase';
+
+function groupSmokes(smokes) {
+  return smokes.reduce((accumulator, smoke) => {
+    const date = smoke.toLocaleDateString('ru-RU');
+    const recordIndex = accumulator.findIndex((record) => record.date === date);
+
+    if (recordIndex !== -1) {
+      accumulator[recordIndex].data.push(smoke);
+    } else {
+      accumulator.push({
+        date,
+        data: [smoke],
+      });
+    }
+    return accumulator;
+  }, []);
+}
+
 const mutations = {
   SET_SMOKES(state, smokes) {
     state.smokes = smokes;
     state.lastSmoke = (smokes) ? smokes[0] : null;
+  },
+  SET_SMOKES_V2(state, smokes) {
+    state.smokesV2 = smokes;
+    state.lastSmoke = (smokes) ? smokes[0].data[0] : null;
+    state.dailyMax = Math.max(...smokes.map((smoke) => smoke.data.length));
+  },
+  CLEAR_USER_DATA_V2(state) {
+    state.smokesV2 = null;
+    state.lastSmoke = null;
+    state.dailyMax = null;
   },
   CLEANUP_SMOKES(state) {
     state.smokes = null;
@@ -26,73 +55,52 @@ const actions = {
 
     const processedSmokes = [];
     if (smokes) {
-      smokes.forEach((smoke) => processedSmokes.push({
-        id: smoke.id,
-        timestamp: smoke.data().timestamp.toDate(),
-      }));
+      smokes.forEach((smoke) => processedSmokes.push(smoke.data().timestamp.toDate()));
     }
 
     commit('SET_SMOKES', processedSmokes);
   },
 
-  async doSmoke({ dispatch, rootState }, smokeData) {
-    const { timestamp } = smokeData;
-
+  async getSmokesV2({ commit, rootState }) {
     try {
-      const collection = await this.$fireStore.collection('users').doc(rootState.auth.user.uid).collection('smokes');
-      await collection.add({
-        timestamp,
-      });
-      dispatch('getSmokes');
-      dispatch('getStats');
-      dispatch('notifications/showNotification', {
-        title: 'Свершилось курение!',
-        text: 'Здоровью нанесён непоправимый урон :(',
-      }, { root: true });
+      const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid).get();
+      const userData = await userDoc.data();
+      const smokes = userData.smokes
+        .map((smoke) => smoke.toDate())
+        .sort((a, b) => ((a < b) ? 1 : -1));
+
+      const groupedSmokes = groupSmokes(smokes);
+
+      commit('SET_SMOKES_V2', groupedSmokes);
     } catch (error) {
-      dispatch('notifications/showNotification', {
-        title: 'Произошла ошибка!',
-        text: `Нам очень жаль${error}`,
-      }, { root: true });
+      console.log(error);
     }
   },
 
-  getStats({ state, commit }) {
-    if (state.smokes) {
-      const { smokes } = state;
-      /* eslint-disable no-param-reassign */
-      const stats = smokes.reduce((accumulator, smoke) => {
-        smoke = new Date(smoke.timestamp);
-        const date = smoke.toLocaleDateString('ru-RU');
-        if (accumulator[date]) {
-          accumulator[date].push(smoke);
-          accumulator[date].sort();
-        } else {
-          accumulator[date] = [smoke];
-        }
-        return accumulator;
-      }, {});
-      /* eslint-enable no-param-reassign */
-      const sortedStats = Object.keys(stats).map((date) => ({
-        date,
-        total: stats[date].length,
-        data: stats[date],
-      })).sort((a, b) => ((a.date < b.date) ? 1 : -1));
-      const max = Math.max(...sortedStats.map((day) => day.total));
-      commit('SET_STATS', {
-        data: sortedStats,
-        max,
+  async doSmokeV2({ dispatch, rootState }, timestamp) {
+    try {
+      const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
+      await userDoc.set({
+        smokes: firebase.firestore.FieldValue.arrayUnion(timestamp),
+      }, {
+        merge: true,
       });
-    } else {
-      commit('CLEAR_STATS');
+      dispatch('getSmokesV2');
+    } catch (error) {
+      dispatch('notifications/showNotification', {
+        title: 'Произошла ошибка!',
+        text: 'Нам очень жаль',
+      }, { root: true });
+      console.log(error);
     }
   },
 };
 
 const state = () => ({
   smokes: null,
+  smokesV2: null,
   lastSmoke: null,
-  stats: null,
+  dailyMax: null,
 });
 
 export default {
