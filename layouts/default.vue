@@ -5,11 +5,13 @@
       shadow
     >
       <template #left>
-        <strong>smokr</strong>
+        <h1 class="navbar__logo">
+          smokr
+        </h1>
       </template>
 
       <template #right>
-        <Auth />
+        <Auth class="navbar__auth-button" />
       </template>
     </vs-navbar>
     <div class="layout-container">
@@ -82,9 +84,17 @@ html {
 body {
   background-color: #D9D9D9;
 }
+.navbar__logo {
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.navbar__auth-button {
+  margin: .6rem 0;
+}
 
 .layout-container {
-  margin-top: calc(44px + .6rem);
+  margin-top: calc(44px + 1.2rem);
 }
 
 /* CSS components */

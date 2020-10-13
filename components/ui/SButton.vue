@@ -43,6 +43,8 @@ export default {
 
   padding: .6rem;
 
+  font-size: 1rem;
+
   border: none;
   border-radius: .6rem;
 
@@ -89,6 +91,7 @@ export default {
   width: 1.6rem;
 
   color: #fff;
+  font-size: .8rem;
   font-weight: bold;
 
   background: #353535;

@@ -1,18 +1,5 @@
 <template>
-  <div class="container">
-    <!-- <vs-button
-      v-if="!$store.state.auth.user"
-      @click.prevent="isLoginPopupActive = !isLoginPopupActive"
-    >
-      Войти
-    </vs-button> -->
-    <!-- <vs-button
-      v-if="$store.state.auth.user"
-      :loading="loggingOut"
-      @click.prevent="logout"
-    >
-      Выйти
-    </vs-button> -->
+  <div class="auth">
     <s-button
       v-if="!$store.state.auth.user"
       color="indigo"
