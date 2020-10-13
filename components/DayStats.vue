@@ -19,15 +19,15 @@
 </template>
 
 <script>
-import sButton from '~/components/ui/sButton.vue';
+import SButton from '~/components/ui/SButton.vue';
 import ExtendedDayStats from '~/components/ExtendedDayStats.vue';
-import iExpand from '~/components/icons/iExpand.vue';
+import IExpand from '~/components/icons/IExpand.vue';
 
 export default {
   components: {
-    sButton,
+    SButton,
     ExtendedDayStats,
-    iExpand,
+    IExpand,
   },
   props: {
     day: {

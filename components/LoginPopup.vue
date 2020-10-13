@@ -57,11 +57,11 @@
 </template>
 
 <script>
-import sInput from '~/components/ui/sInput.vue';
+import SInput from '~/components/ui/SInput.vue';
 
 export default {
   components: {
-    sInput,
+    SInput,
   },
   props: {
     value: Boolean,

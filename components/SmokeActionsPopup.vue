@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import sButton from '~/components/ui/sButton.vue';
+import SButton from '~/components/ui/SButton.vue';
 
 export default {
   components: {
-    sButton,
+    SButton,
   },
   props: {
     value: Boolean,

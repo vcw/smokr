@@ -18,12 +18,12 @@
 
 <script>
 import SmokeActionsPopup from '~/components/SmokeActionsPopup.vue';
-import iActions from '~/components/icons/iActions.vue';
+import IActions from '~/components/icons/IActions.vue';
 
 export default {
   components: {
     SmokeActionsPopup,
-    iActions,
+    IActions,
   },
   props: {
     smoke: {
