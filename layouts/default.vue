@@ -87,10 +87,4 @@ body {
   margin-top: calc(44px + .6rem);
 }
 
-/* Component styling */
-
-.vs-input {
-  font-size: 16px;
-}
-
 </style>
