@@ -1917,6 +1917,11 @@
     "@types/webpack-sources" "*"
     source-map "^0.6.0"
 
+"@verstaerker/vue-bem@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@verstaerker/vue-bem/-/vue-bem-1.2.0.tgz#32d94e87ef6941564300cf40bfee88d07a447ab6"
+  integrity sha512-YhWD2d9qIoS22F2O3OrBxtnrldNsXaxK6Jt40llIlIFVGYbN1qWSzQ/GJ7s2WXc5S6sRx10+lrv7R7WFebHVcg==
+
 "@vue/babel-helper-vue-jsx-merge-props@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@vue/babel-helper-vue-jsx-merge-props/-/babel-helper-vue-jsx-merge-props-1.0.0.tgz#048fe579958da408fb7a8b2a3ec050b50a661040"
