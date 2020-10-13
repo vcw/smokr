@@ -89,7 +89,7 @@ export default {
 
   height: 100%;
 
-  background-color: #2D2E2E;
+  background-color: #353535;
 
   border-radius: .6em;
 }

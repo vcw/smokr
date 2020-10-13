@@ -7,14 +7,23 @@
         <span class="dashboard__last-smoke-date">{{ lastSmokeDate }}</span>
       </div>
 
-      <vs-button
+      <!-- <vs-button
         :loading="doSmokeLoading"
         size="xl"
         success
         @click.prevent="smoke"
       >
         Совершить курение
-      </vs-button>
+      </vs-button> -->
+
+      <s-button
+        color="ming"
+        size="large"
+        :loading="smokeLoading"
+        @click="smoke"
+      >
+        Совершить курение
+      </s-button>
     </s-card>
 
     <s-card v-if="smokes">
@@ -32,16 +41,18 @@
 <script>
 import { mapState } from 'vuex';
 import SCard from '~/components/ui/SCard.vue';
+import SButton from '~/components/ui/SButton.vue';
 import DayStats from '~/components/DayStats.vue';
 
 export default {
   components: {
     SCard,
+    SButton,
     DayStats,
   },
   data() {
     return {
-      doSmokeLoading: false,
+      smokeLoading: false,
     };
   },
   computed: {
@@ -60,10 +71,10 @@ export default {
   methods: {
     async smoke() {
       const timestamp = new Date();
-      this.doSmokeLoading = true;
+      this.smokeLoading = true;
       const response = await this.$store.dispatch('userData/doSmokeV2', timestamp);
       this.$vs.notification(response.notification);
-      this.doSmokeLoading = false;
+      this.smokeLoading = false;
     },
   },
 };
@@ -86,6 +97,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  margin-bottom: 1rem;
 }
 
 .dashboard__last-smoke-text {

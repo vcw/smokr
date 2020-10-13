@@ -1,5 +1,9 @@
 <template>
-  <button v-bem="{ alert, color }" @click.prevent="$emit('click')">
+  <button
+    v-bem="{ color, size, loading }"
+    :disabled="loading"
+    @click.prevent="$emit('click')"
+  >
     <div v-bem:content>
       <slot />
     </div>
@@ -13,8 +17,12 @@ export default {
   components: {
   },
   props: {
-    alert: Boolean,
+    inline: Boolean,
     color: {
+      default: '',
+      type: String,
+    },
+    size: {
       default: '',
       type: String,
     },
@@ -22,6 +30,7 @@ export default {
       default: null,
       type: Number,
     },
+    loading: Boolean,
   },
 };
 </script>
@@ -37,7 +46,7 @@ export default {
   border: none;
   border-radius: .6rem;
 
-  background: #eee;
+  background: #D9D9D9;
 }
 
 .s-button_color_red {
@@ -49,8 +58,21 @@ export default {
   background: #fff;
 }
 
-.s-button_type_default {
-  padding: .3rem;
+.s-button_color_indigo {
+  background: #284B63;
+  color: #fff;
+}
+
+.s-button_color_ming {
+  background: #3C6E71;
+  color: #fff;
+}
+
+.s-button_size_large {
+  padding: .8rem;
+
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .s-button__content {
@@ -69,7 +91,7 @@ export default {
   color: #fff;
   font-weight: bold;
 
-  background: #2D2E2E;
+  background: #353535;
 
   border-radius: .6rem;
 }

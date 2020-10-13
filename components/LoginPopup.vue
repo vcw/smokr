@@ -19,37 +19,37 @@
         placeholder="Пароль"
       />
 
-      <vs-button
+      <s-button
         v-if="!toggleSignUp"
         class="form__submit"
-        block
+        color="indigo"
         :loading="loading"
-        @click.prevent="onLoginButtonClick"
+        @click="onLoginButtonClick"
       >
         Войти
-      </vs-button>
+      </s-button>
 
-      <vs-button
+      <s-button
         v-if="toggleSignUp"
         class="form__submit"
-        block
+        color="indigo"
         :loading="loading"
-        @click.prevent="onSignUpButtonClick"
+        @click="onSignUpButtonClick"
       >
         Зарегистрироваться
-      </vs-button>
+      </s-button>
     </form>
 
     <template #footer>
       <div class="footer-dialog">
         <div v-if="!toggleSignUp" class="new">
           Впервые здесь?
-          <a href="#" @click.prevent="toggleSignUp = true">Регистрация</a>
+          <a class="link" href="#" @click.prevent="toggleSignUp = true">Регистрация</a>
         </div>
 
         <div v-if="toggleSignUp" class="new">
           Уже зарегистрированы?
-          <a href="#" @click.prevent="toggleSignUp = false">Вход</a>
+          <a class="link" href="#" @click.prevent="toggleSignUp = false">Вход</a>
         </div>
       </div>
     </template>

@@ -80,11 +80,24 @@ html {
 }
 
 body {
-  background-color: #eee;
+  background-color: #D9D9D9;
 }
 
 .layout-container {
   margin-top: calc(44px + .6rem);
+}
+
+/* CSS components */
+
+.link {
+  font-weight: bold;
+  line-height: 1rem;
+  color: #353535;
+  text-decoration: none;
+
+  background: linear-gradient(0deg, rgba(40,75,99,1) 0%, rgba(60,110,113,1) 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 </style>
