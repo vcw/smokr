@@ -32,12 +32,12 @@
 <script>
 import { mapState } from 'vuex';
 import sCard from '~/components/ui/sCard.vue';
-import dayStats from '~/components/dayStats.vue';
+import DayStats from '~/components/DayStats.vue';
 
 export default {
   components: {
     sCard,
-    dayStats,
+    DayStats,
   },
   data() {
     return {
