@@ -1,17 +1,23 @@
 <template>
-  <button class="button" @click.prevent="$emit('click')">
-    <div class="button__content">
+  <button v-bem="{ alert, color }" @click.prevent="$emit('click')">
+    <div v-bem:content>
       <slot />
     </div>
-    <span v-if="badge" class="button__badge">{{ badge }}</span>
+    <span v-if="badge" v-bem:badge>{{ badge }}</span>
   </button>
 </template>
 
 <script>
 export default {
+  name: 'SButton',
   components: {
   },
   props: {
+    alert: Boolean,
+    color: {
+      default: '',
+      type: String,
+    },
     badge: {
       default: null,
       type: Number,
@@ -21,7 +27,7 @@ export default {
 </script>
 
 <style>
-.button {
+.s-button {
   appearance: none;
   position: relative;
   display: block;
@@ -34,25 +40,25 @@ export default {
   background: #eee;
 }
 
-.button_alert {
+.s-button_color_red {
   background: #BA1F33;
   color: #fff;
 }
 
-.button_color_dark-gray {
+.s-button_color_white {
   background: #fff;
 }
 
-.button_type_default {
+.s-button_type_default {
   padding: .3rem;
 }
 
-.button__content {
+.s-button__content {
   width: 100%;
   height: 100%;
 }
 
-.button__badge {
+.s-button__badge {
   position: absolute;
   top: -.3rem;
 
@@ -68,7 +74,7 @@ export default {
   border-radius: .6rem;
 }
 
-.button_border {
+.s-button_border {
   border: 2 px solid lightblue;
 }
 </style>

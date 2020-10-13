@@ -13,7 +13,7 @@
           Отменить
         </s-button>
         <s-button
-          class="button_alert"
+          color="red"
           @click="removeSmoke(smoke)"
         >
           Удалить

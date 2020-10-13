@@ -6,7 +6,8 @@
       {{ smoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) }}
     </span>
     <s-button
-      class="extended-day-stats-entry__actions-button button_color_dark-gray"
+      class="extended-day-stats-entry__actions-button"
+      color="white"
       @click="popup = !popup"
     >
       <i-actions />
