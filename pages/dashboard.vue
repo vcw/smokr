@@ -61,7 +61,8 @@ export default {
     async smoke() {
       const timestamp = new Date();
       this.doSmokeLoading = true;
-      await this.$store.dispatch('userData/doSmokeV2', timestamp);
+      const response = await this.$store.dispatch('userData/doSmokeV2', timestamp);
+      this.$vs.notification(response.notification);
       this.doSmokeLoading = false;
     },
   },

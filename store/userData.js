@@ -48,6 +48,7 @@ const actions = {
   },
 
   async doSmokeV2({ dispatch, rootState }, timestamp) {
+    let notification = {};
     try {
       const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
       await userDoc.set({
@@ -56,25 +57,46 @@ const actions = {
         merge: true,
       });
       dispatch('getSmokesV2');
+      notification = {
+        title: 'Свершилось курение!',
+        text: 'Здоровью нанесён непоправимый урон :(',
+      };
     } catch (error) {
-      dispatch('notifications/showNotification', {
+      notification = {
         title: 'Произошла ошибка!',
         text: 'Нам очень жаль',
-      }, { root: true });
+      };
       console.log(error);
     }
+
+    return {
+      notification,
+    };
   },
 
   async removeSmoke({ dispatch, rootState }, timestamp) {
+    let notification = {};
     try {
       const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
       await userDoc.update({
         smokes: firebase.firestore.FieldValue.arrayRemove(timestamp),
       });
       dispatch('getSmokesV2');
+      notification = {
+        title: 'Курение удалено',
+        text: 'Произносим прощальные слова...',
+      };
     } catch (error) {
+      notification = {
+        title: 'Произошла ошибка',
+        text: 'Скорее всего, курение осталось на своём месте...',
+      };
       console.log(error);
     }
+
+    return {
+      notification,
+    };
   },
 };
 

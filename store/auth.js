@@ -17,20 +17,12 @@ const actions = {
       await commit('SET_USER', authUser);
       await dispatch('userData/getSmokesV2', false, { root: true });
       this.$router.push('/dashboard');
-      await dispatch('notifications/showNotification', {
-        title: 'Успех!',
-        text: `Вы вошли как ${authUser.email}`,
-      }, { root: true });
     } else {
       await commit('CLEAN_USER');
       await commit('userData/CLEAR_USER_DATA_V2', false, {
         root: true,
       });
       this.$router.push('/');
-      await dispatch('notifications/showNotification', {
-        title: 'До встречи!',
-        text: 'Вы вышли из аккаунта',
-      }, { root: true });
     }
   },
 };

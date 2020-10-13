@@ -31,15 +31,20 @@ export default {
   ],
   computed: {
     ...mapState({
-      notification: (state) => state.notifications.notification,
+      user: (state) => state.auth.user,
     }),
   },
   watch: {
-    notification(message) {
-      if (message) {
+    user(user) {
+      if (user) {
         this.$vs.notification({
-          title: message.title,
-          text: message.text,
+          title: 'Успех!',
+          text: `Вы вошли как ${user.email}`,
+        });
+      } else {
+        this.$vs.notification({
+          title: 'До встречи!',
+          text: 'Вы вышли из аккаунта',
         });
       }
     },

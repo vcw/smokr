@@ -49,7 +49,8 @@ export default {
   },
   methods: {
     async removeSmoke(smoke) {
-      await this.$store.dispatch('userData/removeSmoke', smoke);
+      const response = await this.$store.dispatch('userData/removeSmoke', smoke);
+      this.$vs.notification(response.notification);
       this.dialog = false;
     },
     closePopup() {
