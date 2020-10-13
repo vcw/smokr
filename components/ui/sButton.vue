@@ -39,6 +39,10 @@ export default {
   color: #fff;
 }
 
+.button_color_dark-gray {
+  background: #fff;
+}
+
 .button_type_default {
   padding: .3rem;
 }
