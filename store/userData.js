@@ -1,5 +1,3 @@
-import firebase from 'firebase';
-
 function groupSmokes(smokes) {
   return smokes.reduce((accumulator, smoke) => {
     const date = smoke.toLocaleDateString('ru-RU');
@@ -52,7 +50,7 @@ const actions = {
     try {
       const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
       await userDoc.set({
-        smokes: firebase.firestore.FieldValue.arrayUnion(timestamp),
+        smokes: this.$fireStoreObj.FieldValue.arrayUnion(timestamp),
       }, {
         merge: true,
       });
@@ -79,7 +77,7 @@ const actions = {
     try {
       const userDoc = await this.$fireStore.collection('users').doc(rootState.auth.user.uid);
       await userDoc.update({
-        smokes: firebase.firestore.FieldValue.arrayRemove(timestamp),
+        smokes: this.$fireStoreObj.FieldValue.arrayRemove(timestamp),
       });
       dispatch('getSmokesV2');
       notification = {
