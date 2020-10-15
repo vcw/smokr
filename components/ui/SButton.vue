@@ -1,7 +1,7 @@
 <template>
   <button
     v-bem="{ color, size, loading }"
-    :disabled="loading"
+    :disabled="loading || disabled"
     @click.prevent="$emit('click')"
   >
     <div v-bem:content>
@@ -31,6 +31,7 @@ export default {
       type: Number,
     },
     loading: Boolean,
+    disabled: Boolean,
   },
 };
 </script>
@@ -97,9 +98,5 @@ export default {
   background: #353535;
 
   border-radius: .6rem;
-}
-
-.s-button_border {
-  border: 2 px solid lightblue;
 }
 </style>

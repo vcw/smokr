@@ -7,23 +7,25 @@
         <span class="dashboard__last-smoke-date">{{ lastSmokeDate }}</span>
       </div>
 
-      <!-- <vs-button
-        :loading="doSmokeLoading"
-        size="xl"
-        success
-        @click.prevent="smoke"
-      >
-        Совершить курение
-      </vs-button> -->
+      <div class="dashboard__add-smoking">
+        <s-button
+          color="ming"
+          size="large"
+          :loading="smokeLoading"
+          @click="smoke"
+        >
+          Совершить курение
+        </s-button>
 
-      <s-button
-        color="ming"
-        size="large"
-        :loading="smokeLoading"
-        @click="smoke"
-      >
-        Совершить курение
-      </s-button>
+        <s-button
+          color="ming"
+          @click="customSmoking = !customSmoking"
+        >
+          <i-add color="#fff" />
+        </s-button>
+
+        <CustomSmokingPopup v-model="customSmoking" />
+      </div>
     </s-card>
 
     <s-card v-if="smokes">
@@ -42,17 +44,22 @@
 import { mapState } from 'vuex';
 import SCard from '~/components/ui/SCard.vue';
 import SButton from '~/components/ui/SButton.vue';
+import IAdd from '~/components/icons/IAdd.vue';
 import DayStats from '~/components/DayStats.vue';
+import CustomSmokingPopup from '~/components/CustomSmokingPopup.vue';
 
 export default {
   components: {
     SCard,
     SButton,
+    IAdd,
     DayStats,
+    CustomSmokingPopup,
   },
   data() {
     return {
       smokeLoading: false,
+      customSmoking: false,
     };
   },
   computed: {
@@ -119,6 +126,12 @@ export default {
   font-weight: normal;
 
   color: #666;
+}
+
+.dashboard__add-smoking {
+    display: grid;
+    grid-template-columns: 1fr 3.5rem;
+    grid-gap: .6rem;
 }
 
 .dashboard__day-stats:not(:last-of-type) {
