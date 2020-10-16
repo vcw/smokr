@@ -1,5 +1,5 @@
 <template>
-  <svg v-bem viewBox="0 0 12 12">
+  <svg :class="b()" viewBox="0 0 12 12">
     <line
       x1="2" y1="4"
       x2="6.5" y2="8"
