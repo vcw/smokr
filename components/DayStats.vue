@@ -1,20 +1,21 @@
 <template>
-  <div class="day-stats">
-    <div class="day-stats__main">
-      <span class="day-stats__date">{{ day.date }}</span>
+  <div :class="b()">
+    <div :class="b('main', {animated: statsExpanded})">
+      <span :class="b('date')">{{ day.date }}</span>
       <i
-        class="day-stats__bar"
+        :class="b('bar')"
         :style="barStyle"
       />
       <s-button
-        class="day-stats__expand"
-        :badge="(!statsExpanded) ? day.data.length : null"
+        :class="b('expand', {animated: statsExpanded})"
+        :badge="day.data.length"
+        :display-badge="statsExpanded"
         @click="toggleExpandedStats"
       >
-        <i-expand :expanded="statsExpanded" />
+        <i-expand :class="b('icon', {expanded: statsExpanded})" />
       </s-button>
     </div>
-    <extended-day-stats v-if="statsExpanded" :smokes="day.data" />
+    <extended-day-stats :class="b('extended-stats', {open: statsExpanded})" :smokes="day.data" />
   </div>
 </template>
 
@@ -24,6 +25,7 @@ import ExtendedDayStats from '~/components/ExtendedDayStats.vue';
 import IExpand from '~/components/icons/IExpand.vue';
 
 export default {
+  name: 'DayStats',
   components: {
     SButton,
     ExtendedDayStats,
@@ -67,18 +69,35 @@ export default {
 }
 
 .day-stats__main {
+  position: relative;
   display: grid;
   grid-template-columns: 1fr 2.3rem;
   grid-template-rows: 1rem 1rem;
   grid-gap: .3rem;
 
+  padding: .3rem;
+
   width: 100%;
   min-height: 2rem;
 }
 
-.day-stats__svg {
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
+.day-stats__main::before {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  background: #D9D9D9;
+
+  border-radius: .6rem;
+
+  opacity: 0;
+  transition: opacity .3s;
+}
+
+.day-stats__main_animated::before {
+  opacity: 1;
 }
 
 .day-stats__bar {
@@ -92,14 +111,67 @@ export default {
   background-color: #353535;
 
   border-radius: .6em;
+
+  z-index: 10;
 }
 
 .day-stats__date {
   align-self: center;
+
+  z-index: 10;
 }
 
 .day-stats__expand {
+  position: relative;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
 }
+
+.day-stats__expand::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: #D9D9D9;
+
+  border-radius: .6rem;
+
+  transform-origin: center center;
+  transform: scale(1);
+  transition: transform .3s;
+
+  z-index: -1;
+}
+
+.day-stats__expand_animated::before {
+  transform: scale(1.2);
+}
+
+.day-stats__extended-stats {
+  max-height: 0;
+  padding: 0;
+  transform: scale(0);
+  transition: transform 0s;
+}
+
+.day-stats__extended-stats_open {
+  padding: .6rem;
+  max-height: 100%;
+  transform: scale(1);
+  transition: transform .3s;
+}
+
+.day-stats__icon {
+  transform: rotate(0deg);
+  transition: transform .3s;
+}
+
+.day-stats__icon_expanded {
+  transform: rotate(180deg);
+}
+
 </style>

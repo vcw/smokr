@@ -1,13 +1,13 @@
 <template>
   <button
-    v-bem="{ color, size, loading }"
+    :class="b({size, color, loading})"
     :disabled="loading || disabled"
     @click.prevent="$emit('click')"
   >
-    <div v-bem:content>
+    <div :class="b('content')">
       <slot />
     </div>
-    <span v-if="badge" v-bem:badge>{{ badge }}</span>
+    <span v-if="badge" :class="b('badge', {hidden: displayBadge})">{{ badge }}</span>
   </button>
 </template>
 
@@ -30,6 +30,7 @@ export default {
       default: null,
       type: Number,
     },
+    displayBadge: Boolean,
     loading: Boolean,
     disabled: Boolean,
   },
@@ -108,5 +109,12 @@ export default {
   background: #353535;
 
   border-radius: .6rem;
+
+  transform: scale(1);
+  transition: transform .3s;
+}
+
+.s-button__badge_hidden {
+  transform: scale(0);
 }
 </style>

@@ -9,7 +9,7 @@
 
       <div class="dashboard__add-smoking">
         <s-button
-          v-bem:add-smoking.now
+          :class="b('add-smoking', {now: true})"
           color="ming"
           size="large"
           :loading="smokeLoading"
