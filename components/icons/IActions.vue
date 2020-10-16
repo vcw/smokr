@@ -1,10 +1,8 @@
 <template>
   <svg v-bem viewBox="0 0 12 12">
-    <g>
-      <circle cx="2" cy="6" r="1" fill="black" />
-      <circle cx="6" cy="6" r="1" fill="black" />
-      <circle cx="10" cy="6" r="1" fill="black" />
-    </g>
+    <circle cx="2" cy="6" r="1" fill="black" />
+    <circle cx="6" cy="6" r="1" fill="black" />
+    <circle cx="10" cy="6" r="1" fill="black" />
   </svg>
 </template>
 
