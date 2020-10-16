@@ -3,14 +3,14 @@
     <g>
       <line
         class="expand-icon__left"
-        x1="2" :y1="top"
-        x2="6.5" :y2="bottom"
+        x1="2" y1="4"
+        x2="6.5" y2="8"
         stroke="black" stroke-width="2" stroke-linecap="round"
       />
       <line
         class="expand-icon__right"
-        x1="6.5" :y1="bottom"
-        x2="10" :y2="top"
+        x1="6.5" y1="8"
+        x2="10" y2="4"
         stroke="black" stroke-width="2" stroke-linecap="round"
       />
     </g>
@@ -20,17 +20,6 @@
 <script>
 export default {
   name: 'IExpand',
-  props: {
-    expanded: Boolean,
-  },
-  computed: {
-    top() {
-      return (this.expanded) ? 8 : 4;
-    },
-    bottom() {
-      return (this.expanded) ? 4 : 8;
-    },
-  },
 };
 </script>
 
