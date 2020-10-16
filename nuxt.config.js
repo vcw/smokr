@@ -29,6 +29,7 @@ export default {
   plugins: [
     '@/plugins/vuesax',
     '@/plugins/vueBem',
+    '@/plugins/vueBemCn',
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

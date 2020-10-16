@@ -18,6 +18,7 @@
     "dotenv": "^8.2.0",
     "firebase": "^7.22.0",
     "nuxt": "^2.14.5",
+    "vue-bem-cn": "^1.1.1",
     "vuesax": "^4.0.1-alpha.24"
   },
   "devDependencies": {
