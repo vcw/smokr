@@ -40,6 +40,12 @@
         :max="dailyMax"
       />
     </s-card>
+    <s-button
+      v-bem:settings
+      @click="$router.push('/settings')"
+    >
+      <i-settings />
+    </s-button>
   </div>
 </template>
 
@@ -48,6 +54,7 @@ import { mapState } from 'vuex';
 import SCard from '~/components/ui/SCard.vue';
 import SButton from '~/components/ui/SButton.vue';
 import IAdd from '~/components/icons/IAdd.vue';
+import ISettings from '~/components/icons/ISettings.vue';
 import DayStats from '~/components/DayStats.vue';
 import CustomSmokingPopup from '~/components/CustomSmokingPopup.vue';
 
@@ -57,6 +64,7 @@ export default {
     SCard,
     SButton,
     IAdd,
+    ISettings,
     DayStats,
     CustomSmokingPopup,
   },
@@ -142,5 +150,9 @@ export default {
 
 .dashboard__day-stats:not(:last-of-type) {
   margin-bottom: .7rem;
+}
+
+.dashboard__settings {
+  margin-top: 1rem;
 }
 </style>
