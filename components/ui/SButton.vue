@@ -84,6 +84,10 @@ export default {
   font-weight: bold;
 }
 
+.s-button_size_small {
+  padding: .3rem;
+}
+
 .s-button_size_large .s-button__content {
   min-width: 1.2rem;
   min-height: 1.2rem;

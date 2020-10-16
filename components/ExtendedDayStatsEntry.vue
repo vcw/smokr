@@ -8,6 +8,7 @@
     <s-button
       class="extended-day-stats-entry__actions-button"
       color="white"
+      size="small"
       @click="popup = !popup"
     >
       <i-actions />
