@@ -1,24 +1,25 @@
 <template>
-  <label class="input">
+  <label :class="b()">
     <input
       v-model="inputValue"
-      class="input__field"
+      :class="b('field')"
       :type="type"
       :placeholder="placeholder"
     >
-    <span class="input__label">{{ placeholder }}</span>
+    <span :class="b('label')">{{ placeholder }}</span>
   </label>
 </template>
 
 <script>
 export default {
+  name: 'SInput',
   props: {
     placeholder: {
       required: true,
       type: String,
     },
     type: {
-      required: true,
+      default: 'text',
       type: String,
     },
     value: {
@@ -41,69 +42,63 @@ export default {
 
 <style>
 
-:root {
-  --s-input-font-family: inherit;
-  --s-input-font-size: 1rem;
-  --s-input-border-radius: .6rem;
-  --s-input-padding-vertical: .5rem;
-  --s-input-padding-horizontal: .6rem;
-  --s-input-background-color: #F3F7F7;
-  --s-input-placeholder-slide-y: calc((100% + var(--s-input-padding-vertical)) * -1);
-  --s-input-placeholder-slide-x: calc(var(--s-input-padding-horizontal) / -2);
-  --s-input-placeholder-scale: .8;
-}
+/* Block */
 
-.input {
+.s-input {
   display: block;
-
   position: relative;
 }
 
-.input__field {
-  padding: var(--s-input-padding-vertical) var(--s-input-padding-horizontal);
+.s-input__field {
+  padding: .6rem;
 
   width: 100%;
 
-  font-family: var(--s-input-font-family);
-  font-size: var(--s-input-font-size);
+  font-family: inherit;
+  font-size: 1rem;
 
   border: none;
-  border-radius: var(--s-input-border-radius);
+  border-radius: .6rem;
 
-  background-color: var(--s-input-background-color);
+  background: #F3F7F7;
 }
 
-.input__field:focus {
+/* Element: field */
+
+.s-input__field:focus {
   outline: none;
 }
 
-.input__field::placeholder {
+.s-input__field::placeholder {
   opacity: 0;
 }
 
-.input__label {
-  display: block;
+/* Element: label */
 
+.s-input__label {
+  display: block;
   position: absolute;
-  top: var(--s-input-padding-vertical);
-  left: var(--s-input-padding-horizontal);
+  top: .6rem;
+  left: .6rem;
 
   cursor: text;
   user-select: none;
 
-  font-family: var(--s-input-font-family);
-  font-size: var(--s-input-font-size);
+  font-family: inherit;
+  font-size: 1rem;
+
   opacity: .4;
 
   transition: all 0.25s ease-in-out;
 }
 
-.input__field:not(:placeholder-shown) + .input__label, .input__field:focus + .input__label {
+/* Lable slide */
+
+.s-input__field:not(:placeholder-shown) + .s-input__label, .s-input__field:focus + .s-input__label {
   opacity: 1;
   transform-origin: 0% 0%;
-  transform: translate(var(--s-input-placeholder-slide-x),
-                       var(--s-input-placeholder-slide-y))
-             scale(var(--s-input-placeholder-scale));
+  transform: translate(-.3rem, calc((100% + .6rem) * -1))
+             scale(.8);
 }
 
 </style>

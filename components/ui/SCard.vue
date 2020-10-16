@@ -1,17 +1,20 @@
 <template>
-  <div class="card">
+  <div :class="b()">
     <slot />
   </div>
 </template>
 
 <script>
 export default {
-
+  name: 'SCard',
 };
 </script>
 
 <style>
-.card {
+
+/* Block */
+
+.s-card {
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,18 +1,18 @@
 <template>
-  <div v-bem>
+  <div :class="b()">
     <input
       v-model="hours"
-      v-bem:input.time_hours
+      :class="b('input')"
       type="text"
       inputmode="numeric"
       pattern="^(([0-1]\d)|(2[0-3]))$"
       required
       size="2"
     >
-    <i-colon v-bem:colon />
+    <i-colon :class="b('colon')" />
     <input
       v-model="minutes"
-      v-bem:input.time_mins
+      :class="b('input')"
       type="text"
       inputmode="numeric"
       pattern="^(([0-5]\d))$"
@@ -42,12 +42,17 @@ export default {
       minutes: this.value.minutes,
     };
   },
+  // Why do we need data hours and minutes & value with hours and minutes:
+  // [TODO]
   watch: {
     hours(newVal, oldVal) {
+      // Masks input
       this.hours = (this.hoursValid(newVal)) ? newVal : oldVal;
+      // Emits input event for sync via v-model
       this.$emit('input', {
         hours: this.hours,
         minutes: this.minutes,
+        // Checks if current input contain properly formatted hours in range
         complete: this.minutesComplete(this.minutes) && this.hoursComplete(this.hours),
       });
     },
@@ -78,11 +83,16 @@ export default {
 </script>
 
 <style>
+
+/* Block */
+
 .s-time-picker {
   display: flex;
   justify-items: center;
   align-items: center;
 }
+
+/* Element: input */
 
 .s-time-picker__input {
   appearance: none;
@@ -99,10 +109,14 @@ export default {
   outline: none;
 }
 
+/* Element: colon */
+
 .s-time-picker__colon {
   height: 1rem;
   width: 1rem;
 }
+
+/* Validation */
 
 .s-time-picker__input:invalid {
   border: 1px solid #e63946;

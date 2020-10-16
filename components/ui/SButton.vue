@@ -38,6 +38,9 @@ export default {
 </script>
 
 <style>
+
+/* Block */
+
 .s-button {
   appearance: none;
   position: relative;
@@ -54,10 +57,14 @@ export default {
   background: #D9D9D9;
 }
 
+/* Element: content */
+
 .s-button__content {
   min-width: 1rem;
   min-height: 1rem;
 }
+
+/* Block modifier: color */
 
 .s-button_color_red {
   background: #BA1F33;
@@ -78,6 +85,8 @@ export default {
   color: #fff;
 }
 
+/* Block modifier: size */
+
 .s-button_size_large {
   padding: .8rem;
 
@@ -85,14 +94,16 @@ export default {
   font-weight: bold;
 }
 
-.s-button_size_small {
-  padding: .3rem;
-}
-
 .s-button_size_large .s-button__content {
   min-width: 1.2rem;
   min-height: 1.2rem;
 }
+
+.s-button_size_small {
+  padding: .3rem;
+}
+
+/* Element: badge */
 
 .s-button__badge {
   position: absolute;
