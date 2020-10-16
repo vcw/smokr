@@ -1,5 +1,5 @@
 <template>
-  <svg class="expand-icon" viewBox="0 0 12 12" width="100%" height="100%">
+  <svg v-bem class="expand-icon" viewBox="0 0 12 12">
     <g>
       <line
         class="expand-icon__left"
@@ -19,6 +19,7 @@
 
 <script>
 export default {
+  name: 'IExpand',
   props: {
     expanded: Boolean,
   },
@@ -34,5 +35,7 @@ export default {
 </script>
 
 <style>
-
+.i-expand {
+  display: block;
+}
 </style>

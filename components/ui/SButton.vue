@@ -45,11 +45,17 @@ export default {
   padding: .6rem;
 
   font-size: 1rem;
+  line-height: 1;
 
   border: none;
   border-radius: .6rem;
 
   background: #D9D9D9;
+}
+
+.s-button__content {
+  min-width: 1rem;
+  min-height: 1rem;
 }
 
 .s-button_color_red {
@@ -78,16 +84,16 @@ export default {
   font-weight: bold;
 }
 
-.s-button__content {
-  width: 100%;
-  height: 100%;
+.s-button_size_large .s-button__content {
+  min-width: 1.2rem;
+  min-height: 1.2rem;
 }
 
 .s-button__badge {
   position: absolute;
   top: -.3rem;
 
-  padding: .1rem .2rem;
+  padding: .2rem;
 
   width: 1.6rem;
 

@@ -9,6 +9,7 @@
 
       <div class="dashboard__add-smoking">
         <s-button
+          v-bem:add-smoking.now
           color="ming"
           size="large"
           :loading="smokeLoading"
@@ -18,7 +19,9 @@
         </s-button>
 
         <s-button
+          v-bem:add-smoking.custom
           color="ming"
+          size="large"
           @click="customSmoking = !customSmoking"
         >
           <i-add color="#fff" />
@@ -49,6 +52,7 @@ import DayStats from '~/components/DayStats.vue';
 import CustomSmokingPopup from '~/components/CustomSmokingPopup.vue';
 
 export default {
+  name: 'Dashboard',
   components: {
     SCard,
     SButton,
@@ -129,9 +133,11 @@ export default {
 }
 
 .dashboard__add-smoking {
-    display: grid;
-    grid-template-columns: 1fr 3.5rem;
-    grid-gap: .6rem;
+    display: flex;
+}
+
+.dashboard__add-smoking_now {
+  margin-right: .6rem;
 }
 
 .dashboard__day-stats:not(:last-of-type) {
