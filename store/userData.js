@@ -18,7 +18,7 @@ function groupSmokes(smokes) {
 const mutations = {
   SET_SMOKES_V2(state, smokes) {
     state.smokesV2 = smokes;
-    state.lastSmoke = (smokes) ? smokes[0].data[0] : null;
+    state.lastSmoke = (smokes.length) ? smokes[0].data[0] : null;
     state.dailyMax = Math.max(...smokes.map((smoke) => smoke.data.length));
   },
   CLEAR_USER_DATA_V2(state) {
