@@ -5,7 +5,7 @@
     </template>
     <span>
       Вы уверены, что хотите удалить курение, совершённое в
-      {{ smoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) }}
+      {{ smoke.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' }) }}?
     </span>
     <template #footer>
       <div class="smoke-actions-popup__actions">
