@@ -1,21 +1,14 @@
 <template>
-  <div class="dashboard">
-    <s-card class="dashboard__actions">
-      <last-smoking v-if="lastSmoke" :smoking="lastSmoke" />
+  <div :class="b()">
+    <s-card :class="b('actions')">
+      <last-smoking v-if="$store.state.userData.lastSmoke" />
       <add-smoking />
     </s-card>
 
-    <s-card v-if="smokes">
-      <day-stats
-        v-for="day in smokes"
-        :key="day.date"
-        class="dashboard__day-stats"
-        :day="day"
-        :max="dailyMax"
-      />
-    </s-card>
+    <stats />
+
     <s-button
-      v-bem:settings
+      :class="b('settings')"
       @click="$router.push('/settings')"
     >
       <i-settings />
@@ -24,11 +17,10 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import SCard from '~/components/ui/SCard.vue';
 import SButton from '~/components/ui/SButton.vue';
 import ISettings from '~/components/icons/ISettings.vue';
-import DayStats from '~/components/DayStats.vue';
+import Stats from '~/components/Stats.vue';
 import LastSmoking from '~/components/LastSmoking.vue';
 import AddSmoking from '~/components/AddSmoking.vue';
 
@@ -38,16 +30,9 @@ export default {
     SCard,
     SButton,
     ISettings,
-    DayStats,
+    Stats,
     LastSmoking,
     AddSmoking,
-  },
-  computed: {
-    ...mapState({
-      lastSmoke: (state) => state.userData.lastSmoke,
-      smokes: (state) => state.userData.smokesV2,
-      dailyMax: (state) => state.userData.dailyMax,
-    }),
   },
 };
 </script>
@@ -63,10 +48,6 @@ export default {
 
 .dashboard__actions {
   margin-bottom: .6rem;
-}
-
-.dashboard__day-stats:not(:last-of-type) {
-  margin-bottom: .7rem;
 }
 
 .dashboard__settings {
