@@ -106,7 +106,7 @@ body {
   text-decoration: none;
 
   background: linear-gradient(0deg, rgba(40,75,99,1) 0%, rgba(60,110,113,1) 60%);
-  -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
