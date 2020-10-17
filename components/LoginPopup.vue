@@ -60,6 +60,7 @@
 import SInput from '~/components/ui/SInput.vue';
 
 export default {
+  name: 'LoginPopup',
   components: {
     SInput,
   },

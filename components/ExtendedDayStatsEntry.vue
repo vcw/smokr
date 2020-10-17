@@ -22,6 +22,7 @@ import SmokeActionsPopup from '~/components/SmokeActionsPopup.vue';
 import IActions from '~/components/icons/IActions.vue';
 
 export default {
+  name: 'ExtendedDayStatsEntry',
   components: {
     SmokeActionsPopup,
     IActions,

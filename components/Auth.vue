@@ -25,6 +25,7 @@ import SButton from '~/components/ui/SButton.vue';
 import LoginPopup from '~/components/LoginPopup.vue';
 
 export default {
+  name: 'Auth',
   components: {
     SButton,
     LoginPopup,
