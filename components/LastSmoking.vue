@@ -7,15 +7,14 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'LastSmoking',
-  props: {
-    smoking: {
-      required: true,
-      type: Date,
-    },
-  },
   computed: {
+    ...mapState({
+      smoking: (state) => state.userData.lastSmoke,
+    }),
     time() {
       return this.smoking.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
     },
