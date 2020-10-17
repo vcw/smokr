@@ -7,7 +7,7 @@
         :style="barStyle"
       />
       <s-button
-        :class="b('expand', {animated: statsExpanded})"
+        :class="b('expand-button', {animated: statsExpanded})"
         :badge="day.data.length"
         :display-badge="statsExpanded"
         @click="toggleExpandedStats"
@@ -64,9 +64,14 @@ export default {
 </script>
 
 <style>
+
+/* Block */
+
 .day-stats {
   width: 100%;
 }
+
+/* Element: main */
 
 .day-stats__main {
   position: relative;
@@ -100,6 +105,8 @@ export default {
   opacity: 1;
 }
 
+/* Element: bar */
+
 .day-stats__bar {
   display: block;
 
@@ -115,19 +122,23 @@ export default {
   z-index: 10;
 }
 
+/* Element: date */
+
 .day-stats__date {
   align-self: center;
 
   z-index: 10;
 }
 
-.day-stats__expand {
+/* Element: expand-button */
+
+.day-stats__expand-button {
   position: relative;
   grid-column: 2 / 3;
   grid-row: 1 / 3;
 }
 
-.day-stats__expand::before {
+.day-stats__expand-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -145,9 +156,11 @@ export default {
   transition: transform .2s;
 }
 
-.day-stats__expand_animated::before {
+.day-stats__expand-button_animated::before {
   transform: scale(1.2);
 }
+
+/* Element: extended-stats */
 
 .day-stats__extended-stats {
   max-height: 0;
@@ -162,6 +175,8 @@ export default {
   transform: scale(1);
   transition: transform .4s;
 }
+
+/* Element: icon */
 
 .day-stats__icon {
   transform: rotate(0deg);
