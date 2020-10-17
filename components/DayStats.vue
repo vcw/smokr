@@ -93,7 +93,7 @@ export default {
   border-radius: .6rem;
 
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .4s;
 }
 
 .day-stats__main_animated::before {
@@ -142,9 +142,7 @@ export default {
 
   transform-origin: center center;
   transform: scale(1);
-  transition: transform .3s;
-
-  z-index: -1;
+  transition: transform .2s;
 }
 
 .day-stats__expand_animated::before {
@@ -162,12 +160,12 @@ export default {
   padding: .6rem;
   max-height: 100%;
   transform: scale(1);
-  transition: transform .3s;
+  transition: transform .4s;
 }
 
 .day-stats__icon {
   transform: rotate(0deg);
-  transition: transform .3s;
+  transition: transform .4s;
 }
 
 .day-stats__icon_expanded {
