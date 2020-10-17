@@ -1,9 +1,9 @@
 <template>
-  <div class="auth">
+  <div>
     <s-button
       v-if="!$store.state.auth.user"
       color="indigo"
-      @click="loginPopupActive = !loginPopupActive"
+      @click="openPopup"
     >
       Войти
     </s-button>
@@ -42,9 +42,9 @@ export default {
       await this.$fireAuth.signOut();
       this.loggingOut = false;
     },
+    openPopup() {
+      this.loginPopupActive = true;
+    },
   },
 };
 </script>
-
-<style>
-</style>
