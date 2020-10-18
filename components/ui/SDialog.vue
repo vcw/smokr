@@ -52,7 +52,6 @@ export default {
   margin: auto;
   padding: 1.2rem;
 
-  /* min-width: 6rem; */
   width: 20rem;
   max-width: 80%;
   min-height: 5rem;
