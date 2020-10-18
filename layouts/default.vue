@@ -25,6 +25,7 @@ import { mapState } from 'vuex';
 import Auth from '~/components/Auth.vue';
 
 export default {
+  name: 'DefaultLayout',
   components: {
     Auth,
   },
@@ -72,6 +73,12 @@ html {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 325px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 *,

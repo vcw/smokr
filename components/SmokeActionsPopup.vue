@@ -27,6 +27,7 @@
 import SButton from '~/components/ui/SButton.vue';
 
 export default {
+  name: 'SmokeActionPopup',
   components: {
     SButton,
   },

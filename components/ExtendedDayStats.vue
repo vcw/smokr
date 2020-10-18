@@ -12,6 +12,7 @@
 import ExtendedDayStatsEntry from '~/components/ExtendedDayStatsEntry.vue';
 
 export default {
+  name: 'ExtendedDayStats',
   components: {
     ExtendedDayStatsEntry,
   },
