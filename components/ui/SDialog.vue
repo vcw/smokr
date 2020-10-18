@@ -5,6 +5,7 @@
         <div v-if="open" :class="b({ open })">
           <s-button
             :class="b('close-button')"
+            color="white"
             @click="close"
           >
             <i-close color="#000" />
