@@ -1,6 +1,6 @@
 <template>
   <s-card
-    v-if="smokings.length"
+    v-if="smokings && smokings.length"
     :class="b()"
   >
     <day-stats
