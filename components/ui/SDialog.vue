@@ -1,18 +1,16 @@
 <template>
   <transition name="fade">
     <div v-if="open" :class="b('container')">
-      <transition name="zoom" appear>
-        <div v-if="open" :class="b({ open })">
-          <s-button
-            :class="b('close-button')"
-            color="white"
-            @click="close"
-          >
-            <i-close color="#000" />
-          </s-button>
-          <slot />
-        </div>
-      </transition>
+      <div v-if="open" :class="b({ open })">
+        <s-button
+          :class="b('close-button')"
+          color="white"
+          @click="close"
+        >
+          <i-close color="#000" />
+        </s-button>
+        <slot />
+      </div>
     </div>
   </transition>
 </template>
@@ -95,13 +93,43 @@ export default {
   opacity: 0;
 }
 
-.zoom-enter-active,
-.zoom-leave-active {
-  transition: transform .3s cubic-bezier(.6, -.6, 0, 1.5);
+.fade-enter-active .s-dialog {
+  animation: zoom-in .4s ease;
 }
 
-.zoom-enter,
-.zoom-leave-to {
-  transform: scale(0);
+.fade-leave-active .s-dialog {
+  animation: zoom-out .4s ease-in-out;
+}
+
+@keyframes zoom-in {
+  0% {
+    transform: scale(0);
+  }
+
+  40% {
+    transform: scale(1.05)
+  }
+
+  80% {
+    transform: scale(.98);
+  }
+
+  100%{
+    transform: scale(1);
+  }
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(1);
+  }
+
+  80% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(0);
+  }
 }
 </style>
