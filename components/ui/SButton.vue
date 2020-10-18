@@ -55,6 +55,8 @@ export default {
   border-radius: .6rem;
 
   background: #D9D9D9;
+
+  box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, .1);
 }
 
 /* Element: content */
