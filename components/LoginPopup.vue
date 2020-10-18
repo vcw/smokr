@@ -1,77 +1,72 @@
 <template>
-  <vs-dialog v-model="dialog">
-    <template #header>
-      <strong v-if="!toggleSignUp">Вход</strong>
-      <strong v-if="toggleSignUp">Регистрация</strong>
-    </template>
-    <form class="form">
-      <s-input
-        v-model="email"
-        class="form__input"
-        type="email"
-        placeholder="E-mail"
-      />
+  <s-dialog
+    v-model="dialog"
+    :class="b()"
+  >
+    <h2
+      v-if="!toggleRegistration"
+      :class="b('header')"
+    >
+      Вход
+    </h2>
+    <h2
+      v-if="toggleRegistration"
+      :class="b('header')"
+    >
+      Регистрация
+    </h2>
 
-      <s-input
-        v-model="password"
-        class="form__input"
-        type="password"
-        placeholder="Пароль"
-      />
+    <login-registration-form
+      :class="b('form')"
+      :toggle-registration="toggleRegistration"
+      @success="closePopup"
+    />
 
-      <s-button
-        v-if="!toggleSignUp"
-        class="form__submit"
-        color="indigo"
-        :loading="loading"
-        @click="onLoginButtonClick"
+    <div
+      v-if="!toggleRegistration"
+      :class="b('footer')"
+    >
+      Впервые здесь?
+      <a
+        class="link"
+        href="#"
+        @click.prevent="toggleRegistration = true"
       >
-        Войти
-      </s-button>
+        Регистрация
+      </a>
+    </div>
 
-      <s-button
-        v-if="toggleSignUp"
-        class="form__submit"
-        color="indigo"
-        :loading="loading"
-        @click="onSignUpButtonClick"
+    <div
+      v-if="toggleRegistration"
+      :class="b('footer')"
+    >
+      Уже зарегистрированы?
+      <a
+        class="link"
+        href="#"
+        @click.prevent="toggleRegistration = false"
       >
-        Зарегистрироваться
-      </s-button>
-    </form>
-
-    <template #footer>
-      <div class="footer-dialog">
-        <div v-if="!toggleSignUp" class="new">
-          Впервые здесь?
-          <a class="link" href="#" @click.prevent="toggleSignUp = true">Регистрация</a>
-        </div>
-
-        <div v-if="toggleSignUp" class="new">
-          Уже зарегистрированы?
-          <a class="link" href="#" @click.prevent="toggleSignUp = false">Вход</a>
-        </div>
-      </div>
-    </template>
-  </vs-dialog>
+        Вход
+      </a>
+    </div>
+  </s-dialog>
 </template>
 
 <script>
-import SInput from '~/components/ui/SInput.vue';
+import SDialog from '~/components/ui/SDialog.vue';
+import LoginRegistrationForm from '~/components/LoginRegistrationForm.vue';
 
 export default {
   name: 'LoginPopup',
   components: {
-    SInput,
+    SDialog,
+    LoginRegistrationForm,
   },
   props: {
     value: Boolean,
   },
   data: () => ({
-    email: '',
-    password: '',
-    toggleSignUp: false,
-    loading: false,
+    toggleRegistration: false,
   }),
   computed: {
     dialog: {
@@ -83,62 +78,25 @@ export default {
       },
     },
   },
-  watch: {
-    dialog(isOpen) {
-      if (!isOpen) {
-        this.email = '';
-        this.password = '';
-        this.toggleSignUp = false;
-      }
-    },
-  },
   methods: {
-    async onLoginButtonClick() {
-      this.loading = true;
-      try {
-        await this.$fireAuth.signInWithEmailAndPassword(this.email, this.password);
-        this.dialog = false;
-      } catch (error) {
-        this.$store.dispatch('notifications/showNotification', {
-          title: 'Неприятность...',
-          text: 'Произошла ошибка при входе :(',
-        });
-      }
-      this.loading = false;
-    },
-
-    async onSignUpButtonClick() {
-      try {
-        await this.$fireAuth.createUserWithEmailAndPassword(
-          this.email,
-          this.password,
-        );
-      } catch (error) {
-        this.$store.dispatch('notifications/showNotification', {
-          title: 'Неприятность...',
-          text: 'Произошла ошибка при регистрации :(',
-        });
-      }
+    closePopup() {
+      this.dialog = false;
     },
   },
 };
 </script>
 
 <style>
-.form {
-  display: flex;
-  flex-direction: column;
+
+.login-popup__header {
+  text-align: center;
 }
 
-.form__input {
-  margin-bottom: 1.5em;
+.login-popup__form {
+  margin: .6rem 0;
 }
 
-.form__input:last-of-type {
-  margin-bottom: 2em;
-}
-
-.form__submit {
-  margin: 0;
+.login-popup__footer {
+  text-align: center;
 }
 </style>

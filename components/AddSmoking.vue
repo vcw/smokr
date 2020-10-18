@@ -61,7 +61,7 @@ export default {
     display: flex;
 }
 
-.add-smoking__button:not(last-child) {
+.add-smoking__button:not(:last-child) {
   margin-right: .6rem;
 }
 </style>
