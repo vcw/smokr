@@ -103,7 +103,7 @@ export default {
 
 @keyframes zoom-in {
   0% {
-    transform: scale(0);
+    transform: scale(.8);
   }
 
   40% {
