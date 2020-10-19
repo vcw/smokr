@@ -1,7 +1,7 @@
 <template>
   <div :class="b()">
     <s-card :class="b('actions')">
-      <last-smoking v-if="$store.state.userData.lastSmoke" />
+      <last-smoking />
       <add-smoking />
     </s-card>
 

@@ -1,29 +1,12 @@
-function groupSmokes(smokes) {
-  return smokes.reduce((accumulator, smoke) => {
-    const date = smoke.toLocaleDateString('ru-RU');
-    const recordIndex = accumulator.findIndex((record) => record.date === date);
-
-    if (recordIndex !== -1) {
-      accumulator[recordIndex].data.push(smoke);
-    } else {
-      accumulator.push({
-        date,
-        data: [smoke],
-      });
-    }
-    return accumulator;
-  }, []);
-}
+import processSmokings from '~/utils/processSmokings';
 
 const mutations = {
   SET_SMOKES_V2(state, smokes) {
     state.smokesV2 = smokes;
-    state.lastSmoke = (smokes.length) ? smokes[0].data[0] : null;
     state.dailyMax = Math.max(...smokes.map((smoke) => smoke.data.length));
   },
   CLEAR_USER_DATA_V2(state) {
     state.smokesV2 = null;
-    state.lastSmoke = null;
     state.dailyMax = null;
   },
 };
@@ -37,7 +20,7 @@ const actions = {
         .map((smoke) => smoke.toDate())
         .sort((a, b) => ((a < b) ? 1 : -1));
 
-      const groupedSmokes = groupSmokes(smokes);
+      const groupedSmokes = processSmokings(smokes);
 
       commit('SET_SMOKES_V2', groupedSmokes);
     } catch (error) {
@@ -100,7 +83,6 @@ const actions = {
 
 const state = () => ({
   smokesV2: null,
-  lastSmoke: null,
   dailyMax: null,
 });
 
