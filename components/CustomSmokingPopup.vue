@@ -1,29 +1,25 @@
 <template>
-  <vs-dialog v-model="dialog">
-    <template #header>
-      <div v-bem:header>
-        <h2>Добавить курение</h2>
-        <h3 v-bem:date>
-          {{ date.toLocaleDateString('ru-RU') }}
-        </h3>
-      </div>
-    </template>
+  <s-dialog v-model="dialog" :class="b()">
+    <div :class="b('header')">
+      <h2>Добавить курение</h2>
+      <h3 :class="b('date')">
+        {{ date.toLocaleDateString('ru-RU') }}
+      </h3>
+    </div>
 
-    <div v-bem:main>
+    <div :class="b('main')">
       <s-time-picker v-model="time" />
     </div>
 
-    <template #footer>
-      <s-button
-        v-bem:add-button
-        color="ming"
-        :disabled="!time.complete || loading"
-        @click="addSmoking"
-      >
-        Добавить
-      </s-button>
-    </template>
-  </vs-dialog>
+    <s-button
+      :class="b('add-button')"
+      color="ming"
+      :disabled="!time.complete || loading"
+      @click="addSmoking"
+    >
+      Добавить
+    </s-button>
+  </s-dialog>
 </template>
 
 <script>
@@ -90,6 +86,20 @@ export default {
 
 <style>
 .custom-smoking-popup__header {
+  text-align: center
+}
+
+.custom-smoking-popup__main {
+  display: flex;
+  justify-content: center;
+  margin: 1.2rem 0;
+}
+
+.custom-smoking-popup__add-button {
+  width: 100%;
+}
+
+/* .custom-smoking-popup__header {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -113,6 +123,6 @@ export default {
   margin-top: 1.5rem;
 
   width: 100%;
-}
+} */
 
 </style>
