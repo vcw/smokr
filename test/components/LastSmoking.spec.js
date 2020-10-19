@@ -20,20 +20,31 @@ describe('Components LastSmoking', () => {
   });
 
   it('Does not render if store has no smokings', () => {
-    expect(wrapper.vm.$el.innerHTML).toBeFalsy();
+    expect(wrapper.html()).toBeFalsy();
   });
 
-  it('Renders if store has smokes', async () => {
+  it('Renders if store has smokings', async () => {
     await wrapper.vm.$store.dispatch('doSmokeV2', new Date());
     expect(wrapper.html()).toBeTruthy();
   });
 
-  it('Does not compute date and time if no last smoking is in the store', () => {
-    expect(wrapper.vm.date).toBe(null);
+  it('Computes last smoking if there are smokings in the store', async () => {
+    await wrapper.vm.$store.dispatch('doSmokeV2', new Date());
+    expect(wrapper.vm.lastSmoking).toBeTruthy();
   });
 
-  it('Computes date and time if last smokin is in the store', async () => {
+  it('Does not compute last smoking if there are no smokings in the store', () => {
+    expect(wrapper.vm.lastSmoking).toBeFalsy();
+  });
+
+  it('Does not compute date and time if there are no smokings in the store', () => {
+    expect(wrapper.vm.date).toBe(null);
+    expect(wrapper.vm.time).toBe(null);
+  });
+
+  it('Computes date and time if there are smokings in the store', async () => {
     await wrapper.vm.$store.dispatch('doSmokeV2', new Date());
     expect(wrapper.vm.date).toBeTruthy();
+    expect(wrapper.vm.time).toBeTruthy();
   });
 });

@@ -3,12 +3,10 @@ import processSmokings from '~/utils/processSmokings';
 const mutations = {
   SET_SMOKES_V2(state, smokes) {
     state.smokesV2 = smokes;
-    state.lastSmoke = (smokes.length) ? smokes[0].data[0] : null;
     state.dailyMax = Math.max(...smokes.map((smoke) => smoke.data.length));
   },
   CLEAR_USER_DATA_V2(state) {
     state.smokesV2 = null;
-    state.lastSmoke = null;
     state.dailyMax = null;
   },
 };
@@ -85,7 +83,6 @@ const actions = {
 
 const state = () => ({
   smokesV2: null,
-  lastSmoke: null,
   dailyMax: null,
 });
 

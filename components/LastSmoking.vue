@@ -1,5 +1,5 @@
 <template>
-  <div v-if="smoking" :class="b()">
+  <div v-if="lastSmoking" :class="b()">
     <span :class="b('text')">Последнее курение</span>
     <strong :class="b('time')">{{ time }}</strong>
     <span :class="b('date')">{{ date }}</span>
@@ -13,16 +13,19 @@ export default {
   name: 'LastSmoking',
   computed: {
     ...mapState({
-      smoking: (state) => state.userData.lastSmoke,
+      lastSmoking: (state) => {
+        const smokings = state.userData.smokesV2;
+        return (smokings && smokings.length) ? smokings[0].data[0] : null;
+      },
     }),
     time() {
-      return (this.smoking) ? this.smoking.toLocaleTimeString('ru-RU', {
+      return (this.lastSmoking) ? this.lastSmoking.toLocaleTimeString('ru-RU', {
         hour: '2-digit',
         minute: '2-digit',
       }) : null;
     },
     date() {
-      return (this.smoking) ? this.smoking.toLocaleDateString('ru-RU') : null;
+      return (this.lastSmoking) ? this.lastSmoking.toLocaleDateString('ru-RU') : null;
     },
   },
 };
