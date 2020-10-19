@@ -27,8 +27,12 @@ export default {
   computed: {
     ...mapState({
       smokings: (state) => state.userData.smokesV2,
-      dailyMax: (state) => state.userData.dailyMax,
     }),
+    dailyMax() {
+      return (this.smokings)
+        ? Math.max(...this.smokings.map((smoking) => smoking.data.length))
+        : 0;
+    },
   },
 };
 </script>
