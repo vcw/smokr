@@ -1,27 +1,31 @@
 <template>
-  <transition name="fade">
-    <div v-if="open" :class="b('container')">
-      <div v-if="open" :class="b({ open })">
-        <s-button
-          :class="b('close-button')"
-          color="white"
-          @click="close"
-        >
-          <i-close color="#000" />
-        </s-button>
-        <slot />
+  <portal>
+    <transition name="fade">
+      <div v-if="open" :class="b('container')">
+        <div v-if="open" :class="b({ open })">
+          <s-button
+            :class="b('close-button')"
+            color="white"
+            @click="close"
+          >
+            <i-close color="#000" />
+          </s-button>
+          <slot />
+        </div>
       </div>
-    </div>
-  </transition>
+    </transition>
+  </portal>
 </template>
 
 <script>
+import { Portal } from '@linusborg/vue-simple-portal';
 import IClose from '~/components/icons/IClose.vue';
 
 export default {
   name: 'SDialog',
   components: {
     IClose,
+    Portal,
   },
   props: {
     value: Boolean,

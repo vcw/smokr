@@ -11,6 +11,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@linusborg/vue-simple-portal": "^0.1.4",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/firebase": "^6.1.1",
     "@nuxtjs/pwa": "^3.0.2",
