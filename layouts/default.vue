@@ -1,19 +1,12 @@
 <template>
   <div>
-    <vs-navbar
-      fixed
-      shadow
-    >
-      <template #left>
-        <h1 class="navbar__logo">
-          smokr
-        </h1>
-      </template>
+    <s-navbar :class="b('navbar')">
+      <h1 :class="b('logo')">
+        smokr
+      </h1>
 
-      <template #right>
-        <Auth class="navbar__auth-button" />
-      </template>
-    </vs-navbar>
+      <auth :class="b('auth-button')" />
+    </s-navbar>
     <div class="layout-container">
       <Nuxt />
     </div>
@@ -91,17 +84,14 @@ html {
 body {
   background-color: #D9D9D9;
 }
-.navbar__logo {
+.default-layout__logo {
+  align-self: start;
   font-size: 1.5rem;
-  color: #000;
-}
-
-.navbar__auth-button {
-  margin: .6rem 0;
+  color: #353535;
 }
 
 .layout-container {
-  margin-top: calc(44px + 1.2rem);
+  margin-top: 4rem;
 }
 
 /* CSS components */
