@@ -70,6 +70,9 @@ export default {
       },
       set(value) {
         this.$emit('input', value);
+        if (value === false) {
+          this.yesterday = false;
+        }
       },
     },
   },
@@ -100,7 +103,6 @@ export default {
       const response = await this.$store.dispatch('userData/doSmokeV2', this.date);
       this.$vs.notification(response.notification);
       this.loading = false;
-      this.yesterday = false;
       this.dialog = false;
     },
   },
