@@ -1,12 +1,12 @@
 <template>
-  <s-card v-bem>
-    <s-button v-bem:button @click="$router.push('/dashboard')">
+  <s-card :class="b()">
+    <s-button :class="b('button')" @click="$router.push('/dashboard')">
       Назад
     </s-button>
-    <s-button v-bem:button @click="clearCache">
+    <s-button :class="b('button')" @click="clearCache">
       Очистить кэш
     </s-button>
-    <s-button v-bem:button @click="update">
+    <s-button :class="b('button')" @click="update">
       Обновить
     </s-button>
   </s-card>
