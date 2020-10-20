@@ -46,8 +46,8 @@ export default {
   },
   data() {
     return {
-      deleting: false
-    }
+      deleting: false,
+    };
   },
   computed: {
     dialog: {
