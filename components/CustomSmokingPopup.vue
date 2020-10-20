@@ -2,27 +2,7 @@
   <s-dialog v-model="dialog" :class="b()">
     <div :class="b('header')">
       <h2>Добавить курение</h2>
-      <div :class="b('date-picker')">
-        <s-button
-          v-if="!yesterday"
-          :class="b('date-picker-yesterday')"
-          @click="yesterday = true"
-        >
-          ←
-        </s-button>
-
-        <h3 :class="b('date')">
-          {{ date.toLocaleDateString('ru-RU') }}
-        </h3>
-
-        <s-button
-          v-if="yesterday"
-          :class="b('date-picker-today')"
-          @click="yesterday = false"
-        >
-          →
-        </s-button>
-      </div>
+      <s-date-picker v-model="date" />
     </div>
 
     <div :class="b('main')">
@@ -42,11 +22,13 @@
 
 <script>
 import STimePicker from '~/components/ui/STimePicker.vue';
+import SDatePicker from '~/components/ui/SDatePicker.vue';
 
 export default {
   name: 'CustomSmokingPopup',
   components: {
     STimePicker,
+    SDatePicker,
   },
   props: {
     value: Boolean,
@@ -59,7 +41,6 @@ export default {
         complete: false,
       },
       date: new Date(),
-      yesterday: false,
       loading: false,
     };
   },
@@ -70,9 +51,6 @@ export default {
       },
       set(value) {
         this.$emit('input', value);
-        if (value === false) {
-          this.yesterday = false;
-        }
       },
     },
   },
@@ -88,10 +66,6 @@ export default {
           complete: true,
         };
       }
-    },
-    yesterday(value) {
-      const offset = (value) ? -1 : 1;
-      this.date.setDate(this.date.getDate() + offset);
     },
   },
   methods: {
@@ -112,29 +86,6 @@ export default {
 <style>
 .custom-smoking-popup__header {
   text-align: center
-}
-
-.custom-smoking-popup__date-picker {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: .6rem;
-
-  margin-top: .6rem;
-}
-
-.custom-smoking-popup__date-picker-yesterday {
-  grid-column: 1 / 2;
-  justify-self: end;
-}
-
-.custom-smoking-popup__date {
-  grid-column: 2 / 3;
-  align-self: center;
-}
-
-.custom-smoking-popup__date-picker-today {
-  grid-column: 3 / 4;
-  justify-self: start;
 }
 
 .custom-smoking-popup__main {
