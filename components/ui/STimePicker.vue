@@ -112,6 +112,7 @@ export default {
 
   border: none;
   border-bottom: .2rem sold transparent;
+  border-radius: 0;
 
   background: #F3F7F7;
 
