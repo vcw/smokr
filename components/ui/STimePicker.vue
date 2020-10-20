@@ -106,12 +106,13 @@ export default {
 
   font-family: inherit;
   font-size: 1rem;
+  font-weight: bold;
   text-align: center;
 
-  width: 2.5rem;
+  width: 3rem;
 
   border: none;
-  border-bottom: .2rem sold transparent;
+  border-bottom: .2rem solid transparent;
   border-radius: 0;
 
   background: #F3F7F7;
