@@ -28,5 +28,7 @@ export default {
   background: #fff;
 
   box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, .1);
+
+  z-index: 1000;
 }
 </style>
