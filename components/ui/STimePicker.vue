@@ -7,9 +7,10 @@
       inputmode="numeric"
       pattern="^(([0-1]\d)|(2[0-3]))$"
       required
-      size="2"
     >
+
     <i-colon :class="b('colon')" />
+
     <input
       v-model="minutes"
       :class="b('input')"
@@ -17,7 +18,6 @@
       inputmode="numeric"
       pattern="^(([0-5]\d))$"
       required
-      size="2"
     >
   </div>
 </template>
@@ -90,6 +90,12 @@ export default {
   display: flex;
   justify-items: center;
   align-items: center;
+
+  padding: .6rem;
+
+  border-radius: .6rem;
+
+  background: #F3F7F7;
 }
 
 /* Element: input */
@@ -100,9 +106,12 @@ export default {
 
   font-family: inherit;
   font-size: 1rem;
+  text-align: center;
 
-  border: 1px sold transparent;
-  border-radius: .6rem;
+  width: 2.5rem;
+
+  border: none;
+  border-bottom: .2rem sold transparent;
 
   background: #F3F7F7;
 
@@ -119,10 +128,10 @@ export default {
 /* Validation */
 
 .s-time-picker__input:invalid {
-  border: 1px solid #e63946;
+  border-bottom: .2rem solid #e63946;
 }
 
 .s-time-picker__input:valid {
-  border: 1px solid #2a9d8f;
+  border-bottom: .2rem solid #2a9d8f;
 }
 </style>
