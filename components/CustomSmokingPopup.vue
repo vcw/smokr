@@ -98,31 +98,4 @@ export default {
 .custom-smoking-popup__add-button {
   width: 100%;
 }
-
-/* .custom-smoking-popup__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.custom-smoking-popup__main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.custom-smoking-popup__input {
-  margin-top: 1.5rem;
-}
-
-.custom-smoking-popup__date {
-  margin: 0 auto;
-}
-
-.custom-smoking-popup__add-button {
-  margin-top: 1.5rem;
-
-  width: 100%;
-} */
-
 </style>
