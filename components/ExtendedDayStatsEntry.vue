@@ -13,7 +13,7 @@
     >
       <i-actions />
     </s-button>
-    <smoke-actions-popup v-model="popup" :smoke="smoke" />
+    <smoke-actions-popup v-model="popup" :smoking="smoke" />
   </div>
 </template>
 
