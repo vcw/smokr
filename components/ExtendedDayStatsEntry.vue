@@ -13,19 +13,19 @@
     >
       <i-actions />
     </s-button>
-    <smoke-actions-popup v-model="popup" :smoking="smoke" />
+    <smoking-actions-popup v-model="popup" :smoking="smoke" />
   </div>
 </template>
 
 <script>
-import SmokeActionsPopup from '~/components/SmokeActionsPopup.vue';
+import SmokingActionsPopup from '~/components/SmokingActionsPopup.vue';
 import SButton from '~/components/ui/SButton.vue';
 import IActions from '~/components/icons/IActions.vue';
 
 export default {
   name: 'ExtendedDayStatsEntry',
   components: {
-    SmokeActionsPopup,
+    SmokingActionsPopup,
     SButton,
     IActions,
   },
