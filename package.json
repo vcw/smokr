@@ -14,7 +14,7 @@
     "@linusborg/vue-simple-portal": "^0.1.4",
     "@nuxtjs/axios": "^5.12.2",
     "@nuxtjs/firebase": "^6.1.1",
-    "@nuxtjs/pwa": "^3.0.2",
+    "@nuxtjs/pwa": "^3.2.2",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
     "firebase": "^7.22.0",
