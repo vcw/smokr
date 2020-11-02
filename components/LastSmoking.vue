@@ -1,6 +1,8 @@
 <template>
   <div v-if="lastSmoking" :class="b()">
-    <span :class="b('text')">Последнее курение</span>
+    <h2 :class="b('heading')">
+      Последнее курение
+    </h2>
     <strong :class="b('time')">{{ time }}</strong>
     <span :class="b('date')">{{ date }}</span>
   </div>
@@ -36,27 +38,31 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-bottom: 1rem;
 }
 
-.last-smoking__text {
+.last-smoking__heading {
   display: block;
-  font-size: 1.5rem;
-  font-weight: normal;
+  margin: 0;
+  margin-bottom: .7rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #495867;
 }
 
 .last-smoking__time {
   display: block;
-  font-size: 2rem;
+  margin: 0;
+  margin-bottom: .25rem;
+  font-size: 1.4rem;
   font-weight: bold;
+  color: #495867;
 }
 
 .last-smoking__date {
   display: block;
-  font-size: 1rem;
+  margin: 0;
+  font-size: .8rem;
   font-weight: normal;
-
-  color: #666;
+  color: #495867;
 }
 </style>
