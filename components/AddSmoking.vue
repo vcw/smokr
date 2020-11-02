@@ -2,8 +2,7 @@
   <div :class="b()">
     <s-button
       :class="b('button')"
-      color="ming"
-      size="large"
+      color="fiord"
       :loading="smokingLoading"
       @click="smoke"
     >
@@ -12,8 +11,7 @@
 
     <s-button
       :class="b('button')"
-      color="ming"
-      size="large"
+      color="fiord"
       @click="openCustomSmokingPopup"
     >
       <i-add color="#fff" />
