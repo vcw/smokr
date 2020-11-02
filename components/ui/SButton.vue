@@ -82,6 +82,11 @@ export default {
   color: #fff;
 }
 
+.s-button_color_fiord {
+  background: #495867;
+  color: #fff;
+}
+
 .s-button_color_ming {
   background: #3C6E71;
   color: #fff;
