@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import IArrow from '~/components/icons/iArrow.vue';
+import IArrow from '~/components/icons/IArrow.vue';
 
 export default {
   name: 'TitleBar',
@@ -48,6 +48,7 @@ export default {
   width: 100%;
   background: #fff;
   box-shadow: 0rem .25rem .5rem rgba(0, 0, 0, 0.05);
+  z-index: 1000;
 }
 
 .title-bar__title {
