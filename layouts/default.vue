@@ -44,6 +44,7 @@ html {
     sans-serif;
   font-size: 16px;
   word-spacing: 1px;
+  color: #495867;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -59,7 +60,7 @@ html {
 }
 
 body {
-  background-color: #D9D9D9;
+  background-color: #F2F2F2;
 }
 
 /* CSS components */
