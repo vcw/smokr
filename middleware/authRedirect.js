@@ -2,10 +2,15 @@
 export default function authRedirect({ store, route, redirect }) {
   const { path } = route;
 
-  if (path !== '/' && !store.state.auth.user) {
+  const whitelist = [
+    '/',
+    '/sign-in',
+  ];
+
+  if (!whitelist.includes(path) && !store.state.auth.user) {
     return redirect('/');
   }
-  if (path === '/' && store.state.auth.user) {
-    return redirect('/dashboard');
+  if (whitelist.includes(path) && store.state.auth.user) {
+    return redirect('/home');
   }
 }
