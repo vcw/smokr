@@ -11,6 +11,7 @@ const mutations = {
   CLEAR_NAVIGATION(state) {
     state.pageTitle = null;
     state.backPath = null;
+    state.showNavBar = false;
   },
 };
 
