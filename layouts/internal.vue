@@ -20,6 +20,9 @@ export default {
     TitleBar,
     NavBar,
   },
+  middleware: [
+    'authRedirect',
+  ],
 };
 </script>
 
