@@ -1,10 +1,12 @@
 <template>
-  <div :class="b()">
-    <title-bar />
-    <main :class="b('content')">
-      <Nuxt />
-    </main>
-    <nav-bar />
+  <div :class="b('wrapper')">
+    <div :class="b()">
+      <title-bar />
+      <main :class="b('content')">
+        <Nuxt />
+      </main>
+      <nav-bar />
+    </div>
   </div>
 </template>
 
@@ -23,6 +25,13 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;700&display=swap');
+
+.internal-layout__wrapper {
+  width: 100%;
+  min-height: 100vh;
+  overflow: auto;
+  background: #F2F2F2;
+}
 
 .internal-layout {
   font-family: 'Ubuntu', sans-serif;
