@@ -61,6 +61,7 @@ export default {
   width: 100%;
   background: #E9E9E9;
   border-top: .1rem solid #495867;
+  z-index: 1000;
 }
 
 .nav-bar__link {
