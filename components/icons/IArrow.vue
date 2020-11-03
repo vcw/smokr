@@ -5,9 +5,9 @@
     fill="none"
     :stroke="color"
     stroke-width="3"
-    :transform="`rotate(${rotate})`"
   >
     <path
+      :style="`transform:rotate(${rotate}deg); transform-origin: center center;`"
       stroke-linecap="round"
       d="M13.3333 3.33337L6.66665 10M6.66665 10L13.3333 16.6667"
     />
