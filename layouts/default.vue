@@ -1,12 +1,5 @@
 <template>
   <div>
-    <s-navbar :class="b('navbar')">
-      <h1 :class="b('logo')">
-        smokr
-      </h1>
-
-      <auth :class="b('auth-button')" />
-    </s-navbar>
     <div class="layout-container">
       <Nuxt />
     </div>
@@ -15,13 +8,9 @@
 
 <script>
 import { mapState } from 'vuex';
-import Auth from '~/components/Auth.vue';
 
 export default {
   name: 'DefaultLayout',
-  components: {
-    Auth,
-  },
   middleware: [
     'authRedirect',
   ],
@@ -51,13 +40,7 @@ export default {
 <style>
 html {
   font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
+    Ubuntu,
     sans-serif;
   font-size: 16px;
   word-spacing: 1px;
