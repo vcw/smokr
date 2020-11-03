@@ -51,12 +51,6 @@ html {
   box-sizing: border-box;
 }
 
-@media screen and (max-width: 325px) {
-  html {
-    font-size: 14px;
-  }
-}
-
 *,
 *::before,
 *::after {
@@ -66,15 +60,6 @@ html {
 
 body {
   background-color: #D9D9D9;
-}
-.default-layout__logo {
-  align-self: start;
-  font-size: 1.5rem;
-  color: #353535;
-}
-
-.layout-container {
-  margin-top: 4rem;
 }
 
 /* CSS components */
