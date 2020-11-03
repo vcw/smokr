@@ -19,6 +19,7 @@ export default {
   beforeMount() {
     this.$store.dispatch('navigation/init', {
       title: 'Настройки',
+      navbar: true,
     });
   },
   methods: {

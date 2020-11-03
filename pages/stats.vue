@@ -15,6 +15,7 @@ export default {
   beforeMount() {
     this.$store.dispatch('navigation/init', {
       title: 'Статистика',
+      navbar: true,
     });
   },
 };
