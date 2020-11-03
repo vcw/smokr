@@ -5,7 +5,7 @@
       :class="b('yesterday')"
       @click="yesterday = true"
     >
-      ←
+      <i-arrow />
     </s-button>
 
     <h3 :class="b('date')">
@@ -17,14 +17,19 @@
       :class="b('today')"
       @click="yesterday = false"
     >
-      →
+      <i-arrow direction="right" />
     </s-button>
   </div>
 </template>
 
 <script>
+import IArrow from '~/components/icons/IArrow.vue';
+
 export default {
   name: 'SDatePicker',
+  components: {
+    IArrow,
+  },
   props: {
     value: {
       required: true,
