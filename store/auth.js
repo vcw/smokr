@@ -16,7 +16,7 @@ const actions = {
     if (authUser) {
       await commit('SET_USER', authUser);
       await dispatch('userData/getSmokesV2', false, { root: true });
-      this.$router.push('/dashboard');
+      this.$router.push('/home');
     } else {
       await commit('CLEAN_USER');
       await commit('userData/CLEAR_USER_DATA_V2', false, {
