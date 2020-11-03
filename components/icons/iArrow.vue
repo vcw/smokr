@@ -27,15 +27,15 @@ export default {
       default: '#000',
     },
   },
-  data() {
-    return {
-      rotate: {
+  computed: {
+    rotate() {
+      return {
         left: '0',
         top: '90',
         right: '180',
         bottom: '270',
-      }[this.direction],
-    };
+      }[this.direction];
+    },
   },
 };
 </script>
