@@ -15,6 +15,12 @@
 <script>
 export default {
   name: 'Settings',
+  layout: 'internal',
+  beforeMount() {
+    this.$store.dispatch('navigation/init', {
+      title: 'Настройки',
+    });
+  },
   methods: {
     async clearCache() {
       const keys = await caches.keys();
@@ -28,10 +34,6 @@ export default {
 </script>
 
 <style>
-.settings {
-  margin: .6rem;
-}
-
 .settings__button {
   margin-bottom: .6rem;
 }
