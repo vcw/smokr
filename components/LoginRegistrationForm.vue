@@ -15,7 +15,7 @@
     />
 
     <s-input
-      v-if="toggleRegistration"
+      v-if="registration"
       v-model="confirmation"
       :class="b('input')"
       type="password"
@@ -23,20 +23,20 @@
     />
 
     <s-button
-      v-if="!toggleRegistration"
+      v-if="!registration"
       :class="b('submit')"
       :loading="loading"
-      color="indigo"
+      color="fiord"
       @click="login"
     >
       Войти
     </s-button>
 
     <s-button
-      v-if="toggleRegistration"
+      v-if="registration"
       :class="b('submit')"
       :loading="loading"
-      color="indigo"
+      color="fiord"
       @click="register"
     >
       Зарегистрироваться
@@ -55,7 +55,7 @@ export default {
     SButton,
   },
   props: {
-    toggleRegistration: Boolean,
+    registration: Boolean,
   },
   data() {
     return {
@@ -121,6 +121,6 @@ export default {
 }
 
 .login-registration-form__submit {
-  margin-top: 2.1rem;
+  margin-top: 1.5rem;
 }
 </style>
