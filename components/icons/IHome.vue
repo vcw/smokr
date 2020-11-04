@@ -1,5 +1,5 @@
-/* eslint-disable max-len */
 <template>
+  <!-- eslint-disable max-len -->
   <svg
     :class="b()"
     :fill="color"
@@ -15,7 +15,7 @@ export default {
   props: {
     color: {
       type: String,
-      default: '#000',
+      default: '#495867',
     },
   },
 };

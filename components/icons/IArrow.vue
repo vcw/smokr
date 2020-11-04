@@ -24,7 +24,7 @@ export default {
     },
     color: {
       type: String,
-      default: '#000',
+      default: '#495867',
     },
   },
   computed: {
