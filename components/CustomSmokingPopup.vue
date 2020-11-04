@@ -11,7 +11,7 @@
 
     <s-button
       :class="b('add-button')"
-      color="ming"
+      color="fiord"
       :disabled="!time.complete || loading"
       @click="addSmoking"
     >
