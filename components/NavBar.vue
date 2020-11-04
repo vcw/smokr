@@ -20,7 +20,6 @@
     >
       <i-settings
         :class="b('icon')"
-        color=""
       />
     </router-link>
   </nav>
